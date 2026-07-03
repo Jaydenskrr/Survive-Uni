@@ -23,6 +23,7 @@ All APIs are exposed on the global `SurviveUni` namespace.
 | `effort`       | `'quick' \| 'boss'` | yes      | Quick Win vs Big Boss Fight               |
 | `done`         | `boolean`           | yes      | Default `false`                           |
 | `snoozedUntil` | `string \| null`    | yes      | ISO date; null = not snoozed              |
+| `owner`        | `string \| null`    | no       | Squad member assigned to the task         |
 | `createdAt`    | `string`            | yes      | ISO datetime                              |
 
 ### Effort tags
@@ -57,9 +58,12 @@ Labels: `SurviveUni.tasks.URGENCY_LABELS`
 | `add({ title, dueDate?, effort? })`       | Create a task. Returns the new task. Throws if title is empty.           |
 | `list({ includeDone?, includeSnoozed? })` | List tasks. Default: active only (not done, not snoozed).                |
 | `markDone(id)`                            | Mark task done. Returns updated task or `null`.                          |
+| `update(id, patch)`                       | Merge fields onto a task (e.g. `{ owner: 'Alex' }`).                     |
+| `assignOwner(id, owner)`                  | Assign or clear task owner for squad features.                           |
 | `snooze(id, untilDate)`                   | Snooze until ISO date (today or future). Returns updated task or `null`. |
 | `snoozeForDays(id, days)`                 | Snooze for N days from today.                                            |
 | `getByUrgency()`                          | Returns `{ urgent: [], soon: [], chill: [] }` sorted by due date.        |
+| `getUrgencyBucket(task)`                  | Returns `'urgent'`, `'soon'`, or `'chill'` for a single task.            |
 | `findById(id)`                            | Find a task by id.                                                       |
 | `daysUntil(dueDate)`                      | Days until due (negative = overdue).                                     |
 | `isSnoozed(task)`                         | Whether task is currently snoozed.                                       |
@@ -69,8 +73,10 @@ Labels: `SurviveUni.tasks.URGENCY_LABELS`
 | Method                                | Description                          |
 | ------------------------------------- | ------------------------------------ |
 | `SurviveUni.storage.loadTasks()`      | Read all tasks from localStorage.    |
-| `SurviveUni.storage.saveTasks(tasks)` | Persist task array.                  |
-| `SurviveUni.storage.clearTasks()`     | Clear all stored tasks (demo reset). |
+| `SurviveUni.storage.saveTasks(tasks)` | Persist task array (normalizes shape, fires change events). |
+| `SurviveUni.storage.clearTasks()`     | Clear all stored tasks (demo reset).                        |
+| `SurviveUni.storage.seedIfEmpty()`    | Load demo tasks on first visit (matches dashboard/calendar).  |
+| `SurviveUni.storage.resetTasks()`     | Replace all tasks with demo seed data.                        |
 
 ### Events
 

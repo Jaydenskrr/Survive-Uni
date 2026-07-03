@@ -188,6 +188,10 @@
 
   function setTaskOwner(taskId, owner) {
     const name = owner ? normalizeName(owner) : null;
+    if (window.SurviveUni?.tasks?.assignOwner) {
+      window.SurviveUni.tasks.assignOwner(taskId, name);
+      return;
+    }
     if (window.Tasks?.assignOwner) {
       window.Tasks.assignOwner(taskId, name);
       return;
@@ -205,7 +209,6 @@
     task.owner = name;
     if (storage) {
       storage.saveTasks(tasks);
-      notifyTasksChanged(tasks);
     } else {
       localStorage.setItem('survive-uni-tasks', JSON.stringify(tasks));
       notifyTasksChanged(tasks);
