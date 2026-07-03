@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survive Uni</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <style>
+    /* Person A — structural layout only (Person B owns visual styling) */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    #app-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    #app-main {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .panel {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1rem;
+      min-width: 0;
+    }
+
+    #sidebar-panels {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    #task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .urgency-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      min-height: 4rem;
+    }
+
+    .urgency-column ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    #task-form,
+    #squad-assign-form,
+    #panic-form,
+    #resource-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: flex-end;
+    }
+
+    #task-form label,
+    #squad-assign-form label,
+    #panic-form label,
+    #resource-form label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      flex: 1 1 140px;
+    }
+
+    #sos-list,
+    #resource-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    #squad-board {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    #squad-board ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* Bonus: stack panels on mobile */
+    @media (max-width: 768px) {
+      #app-main {
+        grid-template-columns: 1fr;
+      }
+
+      #app-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      #task-form label,
+      #squad-assign-form label,
+      #panic-form label,
+      #resource-form label {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header id="app-header" class="panel">
+      <h1 id="app-title">Survive Uni</h1>
+      <label id="survival-mode-toggle">
+        <input type="checkbox" id="survival-mode-checkbox" aria-describedby="survival-mode-hint">
+        Survival Mode
+      </label>
+      <p id="survival-mode-hint" hidden>Dark theme — hides non-urgent tasks</p>
+    </header>
+
+    <main id="app-main">
+      <!-- Tasks: Person C reads/writes #task-list and urgency columns -->
+      <section id="tasks-panel" class="panel" aria-labelledby="tasks-heading">
+        <h2 id="tasks-heading">Tasks</h2>
+
+        <form id="task-form" aria-label="Add a task">
+          <label for="task-title">Task</label>
+          <input type="text" id="task-title" name="title" placeholder="What needs doing?" required>
+
+          <label for="task-due">Due date</label>
+          <input type="date" id="task-due" name="due" required>
+
+          <label for="task-effort">Effort</label>
+          <select id="task-effort" name="effort">
+            <option value="quick-win">Quick Win</option>
+            <option value="big-boss">Big Boss Fight</option>
+          </select>
+
+          <button type="submit" id="add-task-btn">Add Task</button>
+        </form>
+
+        <div id="task-list" aria-live="polite">
+          <section class="urgency-column urgent" aria-labelledby="urgent-heading">
+            <h3 id="urgent-heading">Urgent</h3>
+            <ul id="urgent-list"></ul>
+          </section>
+
+          <section class="urgency-column soon" aria-labelledby="soon-heading">
+            <h3 id="soon-heading">Soon</h3>
+            <ul id="soon-list"></ul>
+          </section>
+
+          <section class="urgency-column chill" aria-labelledby="chill-heading">
+            <h3 id="chill-heading">Chill</h3>
+            <ul id="chill-list"></ul>
+          </section>
+        </div>
+      </section>
+
+      <aside id="sidebar-panels">
+        <!-- Squad: Person D -->
+        <section id="squad-panel" class="panel" aria-labelledby="squad-heading">
+          <h2 id="squad-heading">Squad</h2>
+          <div id="squad-board" aria-live="polite">
+            <ul id="squad-list"></ul>
+          </div>
+          <form id="squad-assign-form" aria-label="Assign task owner">
+            <label for="squad-member-select">Assign to</label>
+            <select id="squad-member-select" name="member">
+              <option value="">Pick a teammate</option>
+              <option value="alice">Alice</option>
+              <option value="bob">Bob</option>
+              <option value="carol">Carol</option>
+              <option value="dave">Dave</option>
+            </select>
+            <label for="squad-task-select">Task</label>
+            <select id="squad-task-select" name="task">
+              <option value="">Pick a task</option>
+            </select>
+            <button type="submit" id="squad-assign-btn">Assign</button>
+          </form>
+        </section>
+
+        <!-- Panic: Person D -->
+        <section id="panic-panel" class="panel" aria-labelledby="panic-heading">
+          <h2 id="panic-heading">Panic Zone</h2>
+          <button type="button" id="panic-button">SOS — Panic Button</button>
+          <form id="panic-form" aria-label="Post an SOS">
+            <label for="panic-message">SOS message</label>
+            <input type="text" id="panic-message" name="message" placeholder="Need help with…">
+            <button type="submit" id="panic-submit-btn">Send SOS</button>
+          </form>
+          <ul id="sos-list" aria-live="polite"></ul>
+        </section>
+
+        <!-- Resources: Person D -->
+        <section id="resources-panel" class="panel" aria-labelledby="resources-heading">
+          <h2 id="resources-heading">Resource Drop Zone</h2>
+          <div id="resource-drop-zone">
+            <form id="resource-form" aria-label="Share a resource">
+              <label for="resource-url">Link</label>
+              <input type="url" id="resource-url" name="url" placeholder="https://…" required>
+              <label for="resource-subject">Subject</label>
+              <input type="text" id="resource-subject" name="subject" placeholder="e.g. CS101" required>
+              <button type="submit" id="resource-add-btn">Drop Link</button>
+            </form>
+            <ul id="resource-list" aria-live="polite"></ul>
+          </div>
+        </section>
+
+        <!-- Motivation: Person E -->
+        <section id="motivation-panel" class="panel" aria-labelledby="motivation-heading">
+          <h2 id="motivation-heading">Motivation</h2>
+          <div id="streak-tracker">
+            <span id="streak-label">Streak:</span>
+            <span id="streak-count">0</span>
+            <span id="streak-unit">days</span>
+          </div>
+          <p id="flavor-text" aria-live="polite"></p>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Task item template: Person C clones this when rendering tasks -->
+  <template id="task-item-template">
+    <li class="task-item" data-task-id="">
+      <span class="task-title"></span>
+      <span class="task-due"></span>
+      <span class="task-effort"></span>
+      <button type="button" class="task-done-btn">Done</button>
+      <button type="button" class="task-snooze-btn">Snooze</button>
+    </li>
+  </template>
+
+  <script src="js/storage.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/social.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
