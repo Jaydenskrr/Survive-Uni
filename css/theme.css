@@ -1,74 +1,86 @@
-/* Person B — Campus Hub theme (frontend-design: distinctive, subject-grounded) */
+/* Person B — Lively campus palette (each block gets its own vibe) */
 
 :root {
-  /* Paper & ink — cool academic mist, not generic SaaS gray or AI cream */
-  --color-bg: #e8eef4;
-  --color-bg-subtle: #dce4ed;
-  --color-surface: #fafbfc;
+  --color-bg: #f0f4ff;
+  --color-bg-subtle: #e8eeff;
+  --color-surface: #ffffff;
   --color-surface-raised: #ffffff;
-  --color-border: #c5d0de;
-  --color-border-strong: #9fb0c4;
+  --color-border: rgba(15, 23, 42, 0.08);
+  --color-border-strong: rgba(15, 23, 42, 0.14);
 
-  /* Ink */
-  --color-text: #121a26;
-  --color-text-muted: #4a5d73;
-  --color-text-faint: #7a8da3;
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-text-faint: #94a3b8;
 
-  /* Campus teal — signature accent (quad, wayfinding) */
-  --color-accent: #1a7f6e;
-  --color-accent-hover: #146658;
-  --color-accent-subtle: #e3f3ef;
-  --color-accent-border: #9fd4c8;
-  --color-accent-glow: rgba(26, 127, 110, 0.18);
+  --color-accent: #6366f1;
+  --color-accent-hover: #4f46e5;
+  --color-accent-subtle: #eef2ff;
+  --color-accent-border: #c7d2fe;
+  --color-accent-glow: rgba(99, 102, 241, 0.2);
 
-  /* Deadline urgency — burnt amber + ember (not generic red/yellow) */
-  --color-urgent: #c2410c;
-  --color-urgent-bg: #fef3eb;
-  --color-urgent-text: #9a3412;
-  --color-soon: #b45309;
-  --color-soon-bg: #fff8ed;
-  --color-soon-text: #92400e;
-  --color-chill: #2d6a4f;
-  --color-chill-bg: #ecfdf3;
-  --color-chill-text: #166534;
+  --color-urgent: #ef4444;
+  --color-urgent-bg: #fef2f2;
+  --color-urgent-text: #b91c1c;
+  --color-soon: #f59e0b;
+  --color-soon-bg: #fffbeb;
+  --color-soon-text: #b45309;
+  --color-chill: #10b981;
+  --color-chill-bg: #ecfdf5;
+  --color-chill-text: #047857;
 
-  /* Events — deep iris (lecture halls, posters) */
-  --color-event: #5b4d8a;
-  --color-event-bg: #f0edf8;
-  --color-event-text: #4c3d78;
+  --color-event: #8b5cf6;
+  --color-event-bg: #f5f3ff;
+  --color-event-text: #6d28d9;
 
-  /* Roles */
-  --color-role-lecturer: #1a7f6e;
-  --color-role-lecturer-bg: #e3f3ef;
-  --color-role-lecturer-text: #146658;
-  --color-role-student-bg: #e8eef4;
-  --color-role-student-text: #4a5d73;
+  --color-role-lecturer: #6366f1;
+  --color-role-lecturer-bg: #eef2ff;
+  --color-role-lecturer-text: #4338ca;
+  --color-role-student-bg: #fce7f3;
+  --color-role-student-text: #be185d;
 
-  /* Status */
-  --color-success-bg: #ecfdf3;
-  --color-success-text: #166534;
-  --color-success-border: #86efac;
-  --color-danger: #be123c;
-  --color-danger-hover: #9f1239;
+  --color-success-bg: #d1fae5;
+  --color-success-text: #047857;
+  --color-success-border: #6ee7b7;
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
 
-  /* Event categories */
-  --cat-career-bg: #fff4e0;
-  --cat-career-text: #a16207;
-  --cat-academic-bg: #e3f3ef;
-  --cat-academic-text: #146658;
-  --cat-social-bg: #fce8f4;
-  --cat-social-text: #9d174d;
-  --cat-sports-bg: #e8f8ef;
+  --cat-career-bg: #fde68a;
+  --cat-career-text: #92400e;
+  --cat-academic-bg: #bfdbfe;
+  --cat-academic-text: #1d4ed8;
+  --cat-social-bg: #fbcfe8;
+  --cat-social-text: #be185d;
+  --cat-sports-bg: #bbf7d0;
   --cat-sports-text: #15803d;
 
-  /* Panel accent stripes (signature element) */
-  --stripe-default: linear-gradient(90deg, #1a7f6e, #5b4d8a);
-  --stripe-deadline: linear-gradient(90deg, #c2410c, #b45309);
-  --stripe-event: linear-gradient(90deg, #5b4d8a, #1a7f6e);
-  --stripe-chat: linear-gradient(90deg, #1a7f6e 0%, #2d6a4f 100%);
+  /* Block themes */
+  --block-hero: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #f97316 100%);
+  --block-timetable: linear-gradient(160deg, #ecfeff 0%, #cffafe 100%);
+  --block-timetable-border: #22d3ee;
+  --block-deadlines: linear-gradient(160deg, #fff1f2 0%, #ffe4e6 100%);
+  --block-deadlines-border: #fb7185;
+  --block-announce: linear-gradient(160deg, #fefce8 0%, #fef9c3 100%);
+  --block-announce-border: #facc15;
+  --block-events-prev: linear-gradient(160deg, #f5f3ff 0%, #ede9fe 100%);
+  --block-events-prev-border: #a78bfa;
+  --block-quick: linear-gradient(160deg, #ecfdf5 0%, #d1fae5 100%);
+  --block-quick-border: #34d399;
+  --block-communities: linear-gradient(160deg, #fdf2f8 0%, #fce7f3 100%);
+  --block-communities-border: #f472b6;
+  --block-chat: linear-gradient(160deg, #eff6ff 0%, #dbeafe 100%);
+  --block-chat-border: #60a5fa;
+  --block-members: linear-gradient(160deg, #faf5ff 0%, #f3e8ff 100%);
+  --block-members-border: #c084fc;
+  --block-calendar: linear-gradient(160deg, #fff7ed 0%, #ffedd5 100%);
+  --block-calendar-border: #fb923c;
+  --block-todo: linear-gradient(160deg, #fdf4ff 0%, #fae8ff 100%);
+  --block-todo-border: #e879f9;
+  --block-day: linear-gradient(160deg, #f0fdfa 0%, #ccfbf1 100%);
+  --block-day-border: #2dd4bf;
+  --block-filter: linear-gradient(160deg, #f8fafc 0%, #e2e8f0 100%);
+  --block-filter-border: #94a3b8;
 }
 
-/* Chat role badges */
 .chat-message .chat-role {
   background: var(--color-role-student-bg);
   color: var(--color-role-student-text);
@@ -79,7 +91,6 @@
   color: var(--color-role-lecturer-text);
 }
 
-/* Event category pills */
 .event-card[data-event-id="1"] .event-category {
   background: var(--cat-career-bg);
   color: var(--cat-career-text);
@@ -95,91 +106,267 @@
   color: var(--cat-sports-text);
 }
 
-/* Panel signature stripes */
-#today-summary::before { background: var(--stripe-default); }
-#timetable-panel::before { background: var(--stripe-default); }
-#deadlines-panel::before { background: var(--stripe-deadline); }
-#announcements-panel::before { background: linear-gradient(90deg, #1a7f6e, #4a5d73); }
-#events-preview-panel::before { background: var(--stripe-event); }
-#quick-links::before { background: var(--color-border-strong); }
-#communities-sidebar::before,
-#chat-panel::before { background: var(--stripe-chat); }
-#members-panel::before { background: linear-gradient(90deg, #4a5d73, #9fb0c4); }
-#calendar-panel::before { background: var(--stripe-event); }
-#todo-panel::before { background: var(--stripe-deadline); }
-#day-detail-panel::before { background: var(--stripe-default); }
-#events-filter-bar::before { background: var(--color-border-strong); }
-.event-card::before { background: var(--stripe-event); height: 2px; }
+/* ── Each block: bold gradient fill + colored border ── */
+
+#today-summary {
+  background: var(--block-hero);
+  border: none;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.35);
+}
+
+#today-summary::before {
+  display: none;
+}
+
+#today-summary h1,
+#today-summary #today-summary-heading {
+  color: #fff;
+}
+
+#today-summary #today-date-label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#today-summary #today-summary-text {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+#timetable-panel {
+  background: var(--block-timetable);
+  border-color: var(--block-timetable-border);
+  border-width: 2px;
+}
+
+#timetable-panel::before {
+  background: linear-gradient(90deg, #06b6d4, #3b82f6);
+  height: 4px;
+}
+
+#timetable-panel h2 {
+  color: #0e7490;
+}
+
+#deadlines-panel {
+  background: var(--block-deadlines);
+  border-color: var(--block-deadlines-border);
+  border-width: 2px;
+}
+
+#deadlines-panel::before {
+  background: linear-gradient(90deg, #ef4444, #f97316);
+  height: 4px;
+}
+
+#deadlines-panel h2 {
+  color: #be123c;
+}
+
+#announcements-panel {
+  background: var(--block-announce);
+  border-color: var(--block-announce-border);
+  border-width: 2px;
+}
+
+#announcements-panel::before {
+  background: linear-gradient(90deg, #eab308, #f97316);
+  height: 4px;
+}
+
+#announcements-panel h2 {
+  color: #a16207;
+}
+
+#events-preview-panel {
+  background: var(--block-events-prev);
+  border-color: var(--block-events-prev-border);
+  border-width: 2px;
+}
+
+#events-preview-panel::before {
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  height: 4px;
+}
+
+#events-preview-panel h2 {
+  color: #7c3aed;
+}
+
+#quick-links {
+  background: var(--block-quick);
+  border-color: var(--block-quick-border);
+  border-width: 2px;
+}
+
+#quick-links::before {
+  background: linear-gradient(90deg, #10b981, #22c55e);
+  height: 4px;
+}
+
+#quick-links h2 {
+  color: #047857;
+}
+
+#communities-sidebar {
+  background: var(--block-communities);
+  border-color: var(--block-communities-border);
+  border-width: 2px;
+}
+
+#communities-sidebar::before {
+  background: linear-gradient(90deg, #ec4899, #f472b6);
+  height: 4px;
+}
+
+#chat-panel {
+  background: var(--block-chat);
+  border-color: var(--block-chat-border);
+  border-width: 2px;
+}
+
+#chat-panel::before {
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  height: 4px;
+}
+
+#members-panel {
+  background: var(--block-members);
+  border-color: var(--block-members-border);
+  border-width: 2px;
+}
+
+#members-panel::before {
+  background: linear-gradient(90deg, #a855f7, #6366f1);
+  height: 4px;
+}
+
+#members-panel h2 {
+  color: #7e22ce;
+}
+
+#calendar-panel {
+  background: var(--block-calendar);
+  border-color: var(--block-calendar-border);
+  border-width: 2px;
+}
+
+#calendar-panel::before {
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  height: 4px;
+}
+
+#calendar-panel h2,
+#calendar-toolbar h2 {
+  color: #c2410c;
+}
+
+#todo-panel {
+  background: var(--block-todo);
+  border-color: var(--block-todo-border);
+  border-width: 2px;
+}
+
+#todo-panel::before {
+  background: linear-gradient(90deg, #d946ef, #ec4899);
+  height: 4px;
+}
+
+#todo-panel h2 {
+  color: #a21caf;
+}
+
+#day-detail-panel {
+  background: var(--block-day);
+  border-color: var(--block-day-border);
+  border-width: 2px;
+}
+
+#day-detail-panel::before {
+  background: linear-gradient(90deg, #14b8a6, #10b981);
+  height: 4px;
+}
+
+#events-filter-bar {
+  background: var(--block-filter);
+  border-color: var(--block-filter-border);
+  border-width: 2px;
+}
+
+#events-filter-bar::before {
+  background: linear-gradient(90deg, #64748b, #94a3b8);
+  height: 4px;
+}
+
+/* Event cards — rotating lively tints */
+.event-card[data-event-id="1"] {
+  background: linear-gradient(160deg, #fffbeb 0%, #fef3c7 100%);
+  border-color: #fbbf24;
+}
+
+.event-card[data-event-id="2"] {
+  background: linear-gradient(160deg, #eff6ff 0%, #dbeafe 100%);
+  border-color: #60a5fa;
+}
+
+.event-card[data-event-id="3"] {
+  background: linear-gradient(160deg, #ecfdf5 0%, #bbf7d0 100%);
+  border-color: #4ade80;
+}
+
+.event-card::before {
+  height: 4px;
+}
+
+.event-card[data-event-id="1"]::before {
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+
+.event-card[data-event-id="2"]::before {
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+}
+
+.event-card[data-event-id="3"]::before {
+  background: linear-gradient(90deg, #22c55e, #10b981);
+}
 
 [data-theme="dark"] {
-  --color-bg: #0c1219;
-  --color-bg-subtle: #151d28;
-  --color-surface: #1a2332;
-  --color-surface-raised: #212d3d;
-  --color-border: #2a3848;
-  --color-border-strong: #3d5066;
-  --color-text: #e8eef4;
-  --color-text-muted: #94a8bc;
-  --color-text-faint: #647888;
-  --color-accent-subtle: #1a3330;
-  --color-accent-border: #2a6b5e;
-  --color-accent-glow: rgba(26, 127, 110, 0.25);
-  --color-urgent-bg: #3d1a0a;
-  --color-urgent-text: #fdba74;
-  --color-soon-bg: #3d2808;
-  --color-soon-text: #fcd34d;
-  --color-event-bg: #2a2240;
-  --color-event-text: #c4b5fd;
-  --color-role-student-bg: #212d3d;
-  --color-role-student-text: #cbd5e1;
-  --color-role-lecturer-bg: #1a3330;
-  --color-role-lecturer-text: #6ee7d7;
+  --color-bg: #0f0f1a;
+  --color-bg-subtle: #1a1a2e;
+  --color-surface: #1e1e32;
+  --color-surface-raised: #252540;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
 }
 
 body.survival-mode {
-  --color-bg: #080d14;
-  --color-bg-subtle: #0f1620;
-  --color-surface: #141c28;
-  --color-border: #243040;
-  --color-text: #e2e9f2;
-  --color-text-muted: #8499ad;
-  --color-accent: #2dd4bf;
-  --color-accent-subtle: #0f2926;
-  --color-urgent: #fb7185;
-  --color-urgent-bg: #3f1219;
-  --color-urgent-text: #fecdd3;
+  --color-bg: #0a0a12;
+  --color-accent: #818cf8;
 }
 
 body.survival-mode #today-summary {
-  background:
-    linear-gradient(160deg, rgba(194, 65, 12, 0.12) 0%, transparent 45%),
-    var(--color-surface);
-  border-color: var(--color-urgent);
-}
-
-body.survival-mode #deadlines-list li {
-  border-left-width: 4px;
-  box-shadow: 0 0 0 1px var(--color-urgent-bg);
+  background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%);
+  box-shadow: 0 8px 32px rgba(239, 68, 68, 0.3);
 }
 
 body.survival-mode #quick-links,
 body.survival-mode #announcements-panel,
 body.survival-mode #events-preview-panel,
 body.survival-mode #members-panel {
-  opacity: 0.4;
+  opacity: 0.35;
   pointer-events: none;
-  filter: saturate(0.4);
+  filter: saturate(0.3);
 }
 
 body.survival-mode #deadlines-panel,
 body.survival-mode #timetable-panel,
 body.survival-mode #todo-panel {
   opacity: 1;
-  box-shadow: 0 0 0 1px var(--color-urgent-bg), 0 8px 32px var(--color-accent-glow);
+  box-shadow: 0 0 0 2px #ef4444, 0 12px 40px rgba(239, 68, 68, 0.2);
 }
 
 body.survival-mode .calendar-day:not([aria-current="date"]) {
-  opacity: 0.3;
+  opacity: 0.25;
 }
 
 body.survival-mode .calendar-day[aria-current="date"],
@@ -192,16 +379,15 @@ body.survival-mode .calendar-marker--event:not(.calendar-marker--assignment) {
 }
 
 body.survival-mode #site-header {
-  border-bottom-color: var(--color-urgent);
+  border-bottom-color: #ef4444;
 }
 
 body.survival-mode #site-logo::after {
-  content: " — exam week";
+  content: " — SURVIVAL MODE";
   font-family: var(--font-sans);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-urgent);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #fca5a5;
   margin-left: 0.5rem;
 }
