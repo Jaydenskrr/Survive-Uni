@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events — Survive Uni</title>
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+  <header id="site-header">
+    <div id="site-header-inner">
+      <a id="site-logo" href="dashboard.html">Survive Uni</a>
+      <button type="button" id="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+      <nav id="main-nav" aria-label="Main">
+        <a href="dashboard.html" data-nav="dashboard">Dashboard</a>
+        <a href="communities.html" data-nav="communities">Communities</a>
+        <a href="calendar.html" data-nav="calendar">Calendar</a>
+        <a href="events.html" data-nav="events" aria-current="page">Events</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="page-main">
+    <h1 id="events-page-heading">Campus Events</h1>
+
+    <div id="events-layout">
+      <aside id="events-filter-bar" class="panel" aria-labelledby="events-filter-heading">
+        <h2 id="events-filter-heading">Filter</h2>
+
+        <label for="events-search">Search</label>
+        <input type="search" id="events-search" name="q" placeholder="Search events…">
+
+        <label for="events-category-filter">Category</label>
+        <select id="events-category-filter" name="category">
+          <option value="all">All categories</option>
+          <option value="academic">Academic</option>
+          <option value="career">Career</option>
+          <option value="social">Social</option>
+          <option value="sports">Sports</option>
+        </select>
+
+        <label for="events-date-filter">Date</label>
+        <select id="events-date-filter" name="date">
+          <option value="upcoming">Upcoming</option>
+          <option value="this-week">This week</option>
+          <option value="this-month">This month</option>
+          <option value="past">Past events</option>
+        </select>
+      </aside>
+
+      <section id="events-feed-section" aria-labelledby="events-feed-heading">
+        <h2 id="events-feed-heading" hidden>Event newsfeed</h2>
+
+        <div id="events-feed" aria-live="polite">
+          <article class="event-card" id="event-card-1" data-event-id="1">
+            <img class="event-card-media" id="event-image-1" src="" alt="" width="800" height="400" hidden>
+            <h3 class="event-title">Career Fair 2026</h3>
+            <p class="event-meta">
+              <time class="event-date" datetime="2026-07-10T10:00:00">Fri 10 Jul, 10:00 AM</time>
+              <span class="event-location"> — Main Hall</span>
+            </p>
+            <p class="event-summary">Meet recruiters from 40+ companies. Bring your resume and student ID.</p>
+            <span class="event-category">Career</span>
+          </article>
+
+          <article class="event-card" id="event-card-2" data-event-id="2">
+            <h3 class="event-title">Hackathon Kickoff</h3>
+            <p class="event-meta">
+              <time class="event-date" datetime="2026-07-11T09:00:00">Sat 11 Jul, 9:00 AM</time>
+              <span class="event-location"> — Innovation Lab</span>
+            </p>
+            <p class="event-summary">Form your team, pick a track, and start building. Free pizza at noon.</p>
+            <span class="event-category">Academic</span>
+          </article>
+
+          <article class="event-card" id="event-card-3" data-event-id="3">
+            <h3 class="event-title">Inter-Uni Football Tournament</h3>
+            <p class="event-meta">
+              <time class="event-date" datetime="2026-07-18T14:00:00">Sat 18 Jul, 2:00 PM</time>
+              <span class="event-location"> — Sports Complex</span>
+            </p>
+            <p class="event-summary">Cheer for our team or sign up as a substitute. Registration closes 15 Jul.</p>
+            <span class="event-category">Sports</span>
+          </article>
+        </div>
+
+        <button type="button" id="events-load-more">Load more events</button>
+      </section>
+    </div>
+  </main>
+
+  <footer id="site-footer">
+    <p>Survive Uni — Campus Hub</p>
+  </footer>
+
+  <template id="event-card-template">
+    <article class="event-card" data-event-id="">
+      <img class="event-card-media event-image" src="" alt="" width="800" height="400" hidden>
+      <h3 class="event-title"></h3>
+      <p class="event-meta">
+        <time class="event-date"></time>
+        <span class="event-location"></span>
+      </p>
+      <p class="event-summary"></p>
+      <span class="event-category"></span>
+    </article>
+  </template>
+
+  <script src="js/storage.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

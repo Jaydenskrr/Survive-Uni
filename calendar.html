@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar — Survive Uni</title>
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+  <header id="site-header">
+    <div id="site-header-inner">
+      <a id="site-logo" href="dashboard.html">Survive Uni</a>
+      <button type="button" id="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+      <nav id="main-nav" aria-label="Main">
+        <a href="dashboard.html" data-nav="dashboard">Dashboard</a>
+        <a href="communities.html" data-nav="communities">Communities</a>
+        <a href="calendar.html" data-nav="calendar" aria-current="page">Calendar</a>
+        <a href="events.html" data-nav="events">Events</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="page-main">
+    <h1 id="calendar-page-heading">Calendar &amp; To-Do</h1>
+
+    <div id="calendar-layout">
+      <section id="calendar-panel" class="panel" aria-labelledby="calendar-panel-heading">
+        <h2 id="calendar-panel-heading" hidden>School calendar</h2>
+
+        <div id="calendar-toolbar">
+          <button type="button" id="calendar-prev" aria-label="Previous month">Previous</button>
+          <h2 id="calendar-month-label">July 2026</h2>
+          <button type="button" id="calendar-next" aria-label="Next month">Next</button>
+          <select id="calendar-view-toggle" aria-label="Calendar view">
+            <option value="month" selected>Month</option>
+            <option value="week">Week</option>
+          </select>
+        </div>
+
+        <div id="calendar-grid">
+          <div id="calendar-weekdays" aria-hidden="true">
+            <span>Sun</span>
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+          </div>
+          <div id="calendar-days" role="grid" aria-label="Calendar days">
+            <button type="button" class="calendar-day" data-date="2026-06-28" role="gridcell" aria-label="28 June 2026">28</button>
+            <button type="button" class="calendar-day" data-date="2026-06-29" role="gridcell" aria-label="29 June 2026">29</button>
+            <button type="button" class="calendar-day" data-date="2026-06-30" role="gridcell" aria-label="30 June 2026">30</button>
+            <button type="button" class="calendar-day" data-date="2026-07-01" role="gridcell" aria-label="1 July 2026">1</button>
+            <button type="button" class="calendar-day" data-date="2026-07-02" role="gridcell" aria-label="2 July 2026">2</button>
+            <button type="button" class="calendar-day" data-date="2026-07-03" role="gridcell" aria-label="3 July 2026" aria-current="date">3</button>
+            <button type="button" class="calendar-day" data-date="2026-07-04" role="gridcell" aria-label="4 July 2026">
+              4
+              <span class="calendar-marker calendar-marker--assignment" title="CS101 Assignment 2 due">Due</span>
+            </button>
+            <button type="button" class="calendar-day" data-date="2026-07-05" role="gridcell" aria-label="5 July 2026">5</button>
+            <button type="button" class="calendar-day" data-date="2026-07-06" role="gridcell" aria-label="6 July 2026">6</button>
+            <button type="button" class="calendar-day" data-date="2026-07-07" role="gridcell" aria-label="7 July 2026">
+              7
+              <span class="calendar-marker calendar-marker--assignment" title="Math201 Problem Set 5 due">Due</span>
+            </button>
+            <button type="button" class="calendar-day" data-date="2026-07-08" role="gridcell" aria-label="8 July 2026">8</button>
+            <button type="button" class="calendar-day" data-date="2026-07-09" role="gridcell" aria-label="9 July 2026">9</button>
+            <button type="button" class="calendar-day" data-date="2026-07-10" role="gridcell" aria-label="10 July 2026">
+              10
+              <span class="calendar-marker calendar-marker--event" title="Career Fair">Event</span>
+            </button>
+            <button type="button" class="calendar-day" data-date="2026-07-11" role="gridcell" aria-label="11 July 2026">
+              11
+              <span class="calendar-marker calendar-marker--event" title="Hackathon Kickoff">Event</span>
+            </button>
+            <button type="button" class="calendar-day" data-date="2026-07-12" role="gridcell" aria-label="12 July 2026">12</button>
+            <button type="button" class="calendar-day" data-date="2026-07-13" role="gridcell" aria-label="13 July 2026">13</button>
+            <button type="button" class="calendar-day" data-date="2026-07-14" role="gridcell" aria-label="14 July 2026">14</button>
+            <button type="button" class="calendar-day" data-date="2026-07-15" role="gridcell" aria-label="15 July 2026">15</button>
+            <button type="button" class="calendar-day" data-date="2026-07-16" role="gridcell" aria-label="16 July 2026">16</button>
+            <button type="button" class="calendar-day" data-date="2026-07-17" role="gridcell" aria-label="17 July 2026">17</button>
+            <button type="button" class="calendar-day" data-date="2026-07-18" role="gridcell" aria-label="18 July 2026">18</button>
+            <button type="button" class="calendar-day" data-date="2026-07-19" role="gridcell" aria-label="19 July 2026">19</button>
+            <button type="button" class="calendar-day" data-date="2026-07-20" role="gridcell" aria-label="20 July 2026">20</button>
+            <button type="button" class="calendar-day" data-date="2026-07-21" role="gridcell" aria-label="21 July 2026">21</button>
+            <button type="button" class="calendar-day" data-date="2026-07-22" role="gridcell" aria-label="22 July 2026">22</button>
+            <button type="button" class="calendar-day" data-date="2026-07-23" role="gridcell" aria-label="23 July 2026">23</button>
+            <button type="button" class="calendar-day" data-date="2026-07-24" role="gridcell" aria-label="24 July 2026">24</button>
+            <button type="button" class="calendar-day" data-date="2026-07-25" role="gridcell" aria-label="25 July 2026">25</button>
+            <button type="button" class="calendar-day" data-date="2026-07-26" role="gridcell" aria-label="26 July 2026">26</button>
+            <button type="button" class="calendar-day" data-date="2026-07-27" role="gridcell" aria-label="27 July 2026">27</button>
+            <button type="button" class="calendar-day" data-date="2026-07-28" role="gridcell" aria-label="28 July 2026">28</button>
+            <button type="button" class="calendar-day" data-date="2026-07-29" role="gridcell" aria-label="29 July 2026">29</button>
+            <button type="button" class="calendar-day" data-date="2026-07-30" role="gridcell" aria-label="30 July 2026">30</button>
+            <button type="button" class="calendar-day" data-date="2026-07-31" role="gridcell" aria-label="31 July 2026">31</button>
+          </div>
+        </div>
+
+        <div id="calendar-legend" aria-label="Calendar legend">
+          <span><span class="calendar-marker calendar-marker--event" aria-hidden="true"></span> Event</span>
+          <span><span class="calendar-marker calendar-marker--assignment" aria-hidden="true"></span> Assignment due</span>
+        </div>
+      </section>
+
+      <aside id="calendar-sidebar">
+        <section id="todo-panel" class="panel" aria-labelledby="todo-heading">
+          <h2 id="todo-heading">To-Do List</h2>
+          <form id="todo-form" aria-label="Add a to-do">
+            <label for="todo-title">Task</label>
+            <input type="text" id="todo-title" name="title" placeholder="What needs doing?" required>
+            <label for="todo-due">Due date</label>
+            <input type="date" id="todo-due" name="due">
+            <button type="submit" id="todo-add-btn">Add</button>
+          </form>
+          <ul id="todo-list" aria-live="polite">
+            <li class="todo-item" data-todo-id="1">
+              <span class="todo-title">Finish CS101 Assignment 2</span>
+              <time class="todo-due" datetime="2026-07-04">Due 4 Jul</time>
+              <button type="button" class="todo-done-btn">Done</button>
+            </li>
+            <li class="todo-item" data-todo-id="2">
+              <span class="todo-title">Review Math201 notes</span>
+              <time class="todo-due" datetime="2026-07-07">Due 7 Jul</time>
+              <button type="button" class="todo-done-btn">Done</button>
+            </li>
+          </ul>
+        </section>
+
+        <section id="day-detail-panel" class="panel" aria-labelledby="day-detail-heading">
+          <h2 id="day-detail-heading">Day Details</h2>
+          <p id="selected-day-label">Friday, 3 July 2026</p>
+          <h3 id="day-events-heading">Events</h3>
+          <ul id="day-events-list">
+            <li>No events scheduled.</li>
+          </ul>
+          <h3 id="day-assignments-heading">Assignments due</h3>
+          <ul id="day-assignments-list">
+            <li>No assignments due.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer id="site-footer">
+    <p>Survive Uni — Campus Hub</p>
+  </footer>
+
+  <template id="calendar-event-template">
+    <li class="calendar-event-item">
+      <strong class="calendar-event-title"></strong>
+      <time class="calendar-event-time"></time>
+    </li>
+  </template>
+
+  <template id="todo-item-template">
+    <li class="todo-item">
+      <span class="todo-title"></span>
+      <time class="todo-due"></time>
+      <button type="button" class="todo-done-btn">Done</button>
+    </li>
+  </template>
+
+  <script src="js/storage.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
