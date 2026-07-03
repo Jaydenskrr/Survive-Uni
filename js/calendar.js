@@ -49,6 +49,7 @@
 
       item.dataset.todoId = task.id;
       item.dataset.taskId = task.id;
+      item.dataset.urgency = api.getUrgencyBucket(task);
 
       const titleEl = item.querySelector('.todo-title');
       const dueEl = item.querySelector('.todo-due');

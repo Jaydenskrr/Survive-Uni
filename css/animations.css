@@ -221,6 +221,15 @@ body.survival-mode #deadlines-panel {
   animation: urgentPulse 2.5s var(--ease-in-out) infinite;
 }
 
+@keyframes flavorPop {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.flavor-text.flavor-pop {
+  animation: flavorPop 0.35s var(--ease-out, ease-out);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,

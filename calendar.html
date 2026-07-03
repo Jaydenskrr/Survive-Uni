@@ -116,18 +116,7 @@
             <input type="date" id="todo-due" name="due">
             <button type="submit" id="todo-add-btn">Add</button>
           </form>
-          <ul id="todo-list" aria-live="polite">
-            <li class="todo-item" data-todo-id="1">
-              <span class="todo-title">Finish CS101 Assignment 2</span>
-              <time class="todo-due" datetime="2026-07-04">Due 4 Jul</time>
-              <button type="button" class="todo-done-btn">Done</button>
-            </li>
-            <li class="todo-item" data-todo-id="2">
-              <span class="todo-title">Review Math201 notes</span>
-              <time class="todo-due" datetime="2026-07-07">Due 7 Jul</time>
-              <button type="button" class="todo-done-btn">Done</button>
-            </li>
-          </ul>
+          <ul id="todo-list" aria-live="polite"></ul>
         </section>
 
         <section id="day-detail-panel" class="panel" aria-labelledby="day-detail-heading">
@@ -167,6 +156,7 @@
 
   <script src="js/storage.js"></script>
   <script src="js/tasks.js"></script>
+  <script src="js/features.js"></script>
   <script src="js/calendar.js"></script>
   <script src="js/app.js"></script>
 </body>

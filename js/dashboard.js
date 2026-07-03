@@ -51,13 +51,16 @@
       li.className = urgencyClass(task);
       li.dataset.taskId = task.id;
 
+      const link = document.createElement('a');
+      link.href = 'calendar.html';
       const strong = document.createElement('strong');
       strong.textContent = task.title;
+      link.appendChild(strong);
 
       const span = document.createElement('span');
       span.textContent = ' — ' + formatDueLabel(task.dueDate);
 
-      li.appendChild(strong);
+      li.appendChild(link);
       li.appendChild(span);
       listEl.appendChild(li);
     });
