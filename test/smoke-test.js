@@ -106,5 +106,10 @@ assert(changed >= 4, 'tasks:changed fires on mutations');
 
 assert(SurviveUni.tasks.getEffortLabel('quick') === 'Quick Win', 'effort label quick');
 assert(SurviveUni.tasks.getEffortEmoji('boss') === '\uD83D\uDC09', 'effort emoji boss');
+assert(SurviveUni.tasks.getUrgencyBucket({ dueDate: tomorrow() }) === 'urgent', 'getUrgencyBucket urgent');
+
+SurviveUni.tasks.assignOwner(task.id, 'Alex');
+const assigned = SurviveUni.tasks.findById(task.id);
+assert(assigned && assigned.owner === 'Alex', 'assignOwner persists owner');
 
 console.log('\nAll smoke tests passed!');
