@@ -27,8 +27,31 @@
     <section id="today-summary" class="panel" aria-labelledby="today-summary-heading">
       <h1 id="today-summary-heading">Dashboard</h1>
       <p id="today-date-label">Today</p>
-      <p id="today-summary-text">Your schedule and updates at a glance.</p>
+      <p id="today-summary-text">Loading your overview…</p>
+      <div id="streak-panel" class="streak-panel" aria-label="Completion streak">
+        <span class="streak-flame" aria-hidden="true">🔥</span>
+        <span id="streak-count">0</span>
+        <span id="streak-unit">days</span>
+        <span class="streak-label">streak</span>
+      </div>
+      <p id="flavor-text" class="flavor-text" aria-live="polite"></p>
+      <label class="survival-mode-toggle">
+        <input type="checkbox" id="survival-mode-checkbox" name="survival-mode">
+        Survival Mode — focus on urgent only
+      </label>
     </section>
+
+    <nav id="dashboard-features" class="panel" aria-labelledby="dashboard-features-heading">
+      <h2 id="dashboard-features-heading">Survive Uni — Quick access</h2>
+      <ul class="dashboard-features-grid">
+        <li><a class="dashboard-feature-card" href="calendar.html"><span class="dashboard-feature-icon">📋</span><strong>Tasks &amp; Calendar</strong><span>Add to-dos, track due dates</span></a></li>
+        <li><a class="dashboard-feature-card" href="communities.html#squad-tools"><span class="dashboard-feature-icon">👥</span><strong>Squad Board</strong><span>Who's doing what — assign &amp; claim</span></a></li>
+        <li><a class="dashboard-feature-card" href="communities.html#panic-panel"><span class="dashboard-feature-icon">🆘</span><strong>Panic Button</strong><span>Send SOS to your squad</span></a></li>
+        <li><a class="dashboard-feature-card" href="communities.html#resource-panel"><span class="dashboard-feature-icon">📎</span><strong>Resource Drop</strong><span>Share study links by subject</span></a></li>
+        <li><a class="dashboard-feature-card" href="communities.html"><span class="dashboard-feature-icon">💬</span><strong>Communities</strong><span>Group chat &amp; squad tools</span></a></li>
+        <li><a class="dashboard-feature-card" href="events.html"><span class="dashboard-feature-icon">🎉</span><strong>Campus Events</strong><span>What's on around uni</span></a></li>
+      </ul>
+    </nav>
 
     <div id="dashboard-grid">
       <div id="dashboard-primary">
@@ -93,17 +116,9 @@
       <aside id="dashboard-sidebar">
         <section id="deadlines-panel" class="panel" aria-labelledby="deadlines-heading">
           <h2 id="deadlines-heading">Deadlines</h2>
-          <ul id="deadlines-list" aria-live="polite">
-            <li>
-              <strong>CS101 Assignment 2</strong>
-              <span> — due Fri 4 Jul</span>
-            </li>
-            <li>
-              <strong>Math201 Problem Set 5</strong>
-              <span> — due Mon 7 Jul</span>
-            </li>
-          </ul>
+          <ul id="deadlines-list" aria-live="polite"></ul>
           <p id="deadlines-empty" hidden>No upcoming deadlines.</p>
+          <p><a href="calendar.html">Manage tasks in Calendar</a></p>
         </section>
 
         <section id="announcements-panel" class="panel" aria-labelledby="announcements-heading">
@@ -123,8 +138,11 @@
         <nav id="quick-links" class="panel" aria-labelledby="quick-links-heading">
           <h2 id="quick-links-heading">Quick Links</h2>
           <ul>
-            <li><a href="calendar.html">Open Calendar</a></li>
-            <li><a href="communities.html">Join a Community</a></li>
+            <li><a href="calendar.html">Tasks &amp; Calendar</a></li>
+            <li><a href="communities.html#squad-tools">Squad Board</a></li>
+            <li><a href="communities.html#panic-panel">Panic Button</a></li>
+            <li><a href="communities.html#resource-panel">Resource Drop Zone</a></li>
+            <li><a href="communities.html">Communities</a></li>
             <li><a href="events.html">Browse Events</a></li>
           </ul>
         </nav>
@@ -138,6 +156,7 @@
 
   <script src="js/storage.js"></script>
   <script src="js/tasks.js"></script>
+  <script src="js/features.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/app.js"></script>
 </body>
