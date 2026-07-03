@@ -1,0 +1,259 @@
+/* Person B — Motion & micro-interactions (Emil design-eng principles) */
+
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-fast: 140ms;
+  --duration-ui: 220ms;
+  --duration-enter: 380ms;
+}
+
+/* Page load — stagger panels (occasional, decorative) */
+#page-main > .panel,
+#page-main > h1,
+#dashboard-grid .panel,
+#communities-layout > *,
+#calendar-layout > *,
+#calendar-sidebar > .panel,
+#events-layout > * {
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  animation: revealUp var(--duration-enter) var(--ease-out) forwards;
+}
+
+#page-main > .panel { animation-delay: 0ms; }
+#dashboard-grid .panel:nth-child(1),
+#communities-layout > *:nth-child(1),
+#calendar-layout > *:nth-child(1),
+#events-layout > *:nth-child(1) { animation-delay: 40ms; }
+#dashboard-grid .panel:nth-child(2),
+#communities-layout > *:nth-child(2),
+#calendar-layout > *:nth-child(2),
+#events-layout > *:nth-child(2) { animation-delay: 80ms; }
+#communities-layout > *:nth-child(3) { animation-delay: 120ms; }
+#dashboard-primary .panel:nth-child(1) { animation-delay: 60ms; }
+#dashboard-primary .panel:nth-child(2) { animation-delay: 100ms; }
+#dashboard-sidebar .panel:nth-child(1) { animation-delay: 80ms; }
+#dashboard-sidebar .panel:nth-child(2) { animation-delay: 120ms; }
+#dashboard-sidebar .panel:nth-child(3) { animation-delay: 160ms; }
+#calendar-sidebar .panel:nth-child(1) { animation-delay: 100ms; }
+#calendar-sidebar .panel:nth-child(2) { animation-delay: 140ms; }
+
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* List item stagger */
+#deadlines-list li,
+#announcements-list li,
+#upcoming-events-list li,
+#communities-list li,
+#todo-list li {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: revealUp var(--duration-ui) var(--ease-out) forwards;
+}
+
+#deadlines-list li:nth-child(1) { animation-delay: 180ms; }
+#deadlines-list li:nth-child(2) { animation-delay: 220ms; }
+#announcements-list li:nth-child(1) { animation-delay: 200ms; }
+#announcements-list li:nth-child(2) { animation-delay: 240ms; }
+#upcoming-events-list li:nth-child(1) { animation-delay: 140ms; }
+#upcoming-events-list li:nth-child(2) { animation-delay: 180ms; }
+#communities-list li:nth-child(1) { animation-delay: 160ms; }
+#communities-list li:nth-child(2) { animation-delay: 200ms; }
+#communities-list li:nth-child(3) { animation-delay: 240ms; }
+#todo-list li:nth-child(1) { animation-delay: 180ms; }
+#todo-list li:nth-child(2) { animation-delay: 220ms; }
+.event-card:not(.reveal-on-scroll):nth-child(1) { animation-delay: 120ms; }
+.event-card:not(.reveal-on-scroll):nth-child(2) { animation-delay: 160ms; }
+.event-card:not(.reveal-on-scroll):nth-child(3) { animation-delay: 200ms; }
+
+/* Events page uses scroll reveal instead of load stagger */
+#events-feed .event-card.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: none;
+}
+
+/* Chat messages — enter from slight scale, not zero */
+.chat-message {
+  opacity: 0;
+  transform: translateY(6px) scale(0.97);
+  animation: messageIn var(--duration-ui) var(--ease-out) forwards;
+}
+
+.chat-message:nth-child(1) { animation-delay: 200ms; }
+.chat-message:nth-child(2) { animation-delay: 260ms; }
+.chat-message:nth-child(3) { animation-delay: 320ms; }
+
+@keyframes messageIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* New messages added via JS */
+.chat-message.is-new {
+  opacity: 0;
+  transform: translateY(8px) scale(0.97);
+  animation: messageIn var(--duration-ui) var(--ease-out) forwards;
+}
+
+/* Mobile nav — ease-out slide */
+#main-nav {
+  transition: opacity var(--duration-ui) var(--ease-out),
+              transform var(--duration-ui) var(--ease-out);
+}
+
+@media (max-width: 768px) {
+  #main-nav {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+  }
+
+  #main-nav.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+/* Scroll reveal (JS adds .is-visible) */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--duration-enter) var(--ease-out),
+              transform var(--duration-enter) var(--ease-out);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Todo complete — interruptible transition, not keyframe restart */
+.todo-item {
+  transition: opacity var(--duration-ui) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out),
+              filter var(--duration-ui) var(--ease-out);
+}
+
+.todo-item.is-done {
+  opacity: 0.5;
+  transform: scale(0.98);
+  filter: blur(0);
+  animation: none;
+}
+
+.todo-item.is-done .todo-title {
+  text-decoration: line-through;
+}
+
+.todo-done-btn:active {
+  transform: scale(0.95);
+}
+
+/* Event card hover — gated behind fine pointer */
+@media (hover: hover) and (pointer: fine) {
+  .event-card {
+    transition: transform var(--duration-ui) var(--ease-out),
+                box-shadow var(--duration-ui) var(--ease-out),
+                border-color var(--duration-ui) var(--ease-out);
+  }
+
+  .event-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .panel:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  #weekly-timetable tbody tr {
+    transition: background-color var(--duration-fast) ease;
+  }
+
+  .community-item {
+    transition: background-color var(--duration-fast) var(--ease-out),
+                border-color var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
+  }
+
+  .community-item:hover {
+    transform: translateX(2px);
+  }
+
+  .calendar-day {
+    transition: border-color var(--duration-fast) var(--ease-out),
+                background-color var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-fast) var(--ease-out);
+  }
+
+  .calendar-day:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Press feedback — all pressables */
+button,
+[type="submit"],
+.community-item,
+.calendar-day,
+#main-nav a {
+  transition: transform var(--duration-fast) var(--ease-out),
+              background-color var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+}
+
+button:active,
+[type="submit"]:active,
+.community-item:active,
+.calendar-day:active {
+  transform: scale(0.97);
+}
+
+/* Survival mode toggle pulse (dashboard — add via JS later) */
+@keyframes urgentPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.25); }
+  50% { box-shadow: 0 0 0 6px rgba(220, 38, 38, 0); }
+}
+
+body.survival-mode #deadlines-panel {
+  animation: urgentPulse 2.5s var(--ease-in-out) infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+
+  #page-main > .panel,
+  #dashboard-grid .panel,
+  .chat-message,
+  .event-card,
+  #deadlines-list li {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
