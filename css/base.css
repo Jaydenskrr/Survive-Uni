@@ -1,37 +1,47 @@
-/* Person B — Modern SaaS base styles */
+/* Person B — Modern SaaS base styles (Emil design-eng polish) */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 :root {
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-full: 9999px;
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.1);
-  --transition: 150ms ease;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 4px 6px rgba(15, 23, 42, 0.04), 0 10px 24px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 8px 16px rgba(15, 23, 42, 0.06), 0 24px 48px rgba(15, 23, 42, 0.1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --duration-fast: 140ms;
 }
 
 body {
   font-family: var(--font-sans);
   font-size: 0.9375rem;
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--color-text);
-  background: var(--color-bg);
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 10% -10%, rgba(37, 99, 235, 0.07), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 90% 0%, rgba(124, 58, 237, 0.05), transparent 45%);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3 {
   margin: 0;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: var(--color-text);
 }
 
-h1 { font-size: 1.75rem; }
-h2 { font-size: 1.125rem; }
+h1 {
+  font-size: 1.875rem;
+  line-height: 1.2;
+}
+
+h2 { font-size: 1.0625rem; }
 h3 { font-size: 0.9375rem; }
 
 p { margin: 0; }
@@ -39,16 +49,20 @@ p { margin: 0; }
 a {
   color: var(--color-accent);
   text-decoration: none;
-  transition: color var(--transition);
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
-a:hover {
-  color: var(--color-accent-hover);
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    color: var(--color-accent-hover);
+  }
 }
 
-/* Header */
+/* Header — glass bar */
 #site-header {
-  background: var(--color-surface);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
   border-bottom: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
   position: sticky;
@@ -60,37 +74,53 @@ a:hover {
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--color-text);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-#site-logo:hover {
-  color: var(--color-accent);
+#site-logo::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-subtle);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #site-logo:hover {
+    color: var(--color-accent);
+  }
 }
 
 #main-nav a {
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-text-muted);
-  padding: 0.4rem 0.75rem;
+  padding: 0.45rem 0.85rem;
   border-radius: var(--radius-md);
-  transition: background var(--transition), color var(--transition);
 }
 
-#main-nav a:hover {
-  color: var(--color-text);
-  background: var(--color-bg-subtle);
+@media (hover: hover) and (pointer: fine) {
+  #main-nav a:hover {
+    color: var(--color-text);
+    background: var(--color-bg-subtle);
+  }
 }
 
 #main-nav a[aria-current="page"] {
   color: var(--color-accent);
   background: var(--color-accent-subtle);
+  font-weight: 600;
 }
 
 #nav-toggle {
   font-family: inherit;
   font-size: 0.875rem;
   font-weight: 500;
-  padding: 0.4rem 0.75rem;
+  padding: 0.45rem 0.85rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
@@ -98,11 +128,13 @@ a:hover {
   cursor: pointer;
 }
 
-#nav-toggle:hover {
-  background: var(--color-bg-subtle);
+@media (hover: hover) and (pointer: fine) {
+  #nav-toggle:hover {
+    background: var(--color-bg-subtle);
+    border-color: var(--color-border-strong);
+  }
 }
 
-/* Footer */
 #site-footer {
   font-size: 0.8125rem;
   color: var(--color-text-muted);
@@ -121,20 +153,37 @@ a:hover {
 }
 
 #today-summary {
-  background: linear-gradient(135deg, var(--color-accent-subtle) 0%, var(--color-surface) 100%);
+  background:
+    linear-gradient(135deg, var(--color-accent-subtle) 0%, transparent 55%),
+    var(--color-surface);
   border-color: var(--color-accent-border);
+  position: relative;
+  overflow: hidden;
+}
+
+#today-summary::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 #today-date-label {
-  font-size: 0.8125rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--color-accent);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
 }
 
 #today-summary-text {
   color: var(--color-text-muted);
+  max-width: 42ch;
 }
 
 /* Buttons */
@@ -149,17 +198,21 @@ button,
   background: var(--color-accent);
   color: #fff;
   cursor: pointer;
-  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2);
 }
 
-button:hover,
-[type="submit"]:hover {
-  background: var(--color-accent-hover);
+@media (hover: hover) and (pointer: fine) {
+  button:hover,
+  [type="submit"]:hover {
+    background: var(--color-accent-hover);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+  }
 }
 
 button:active,
 [type="submit"]:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
+  box-shadow: none;
 }
 
 button:focus-visible,
@@ -172,25 +225,29 @@ select:focus-visible {
 
 #calendar-prev,
 #calendar-next,
-#events-load-more {
+#events-load-more,
+.todo-done-btn {
   background: var(--color-surface);
   color: var(--color-text);
   border: 1px solid var(--color-border);
+  box-shadow: none;
 }
 
-#calendar-prev:hover,
-#calendar-next:hover,
-#events-load-more:hover {
-  background: var(--color-bg-subtle);
-  border-color: var(--color-border-strong);
-}
+@media (hover: hover) and (pointer: fine) {
+  #calendar-prev:hover,
+  #calendar-next:hover,
+  #events-load-more:hover,
+  .todo-done-btn:hover {
+    background: var(--color-bg-subtle);
+    border-color: var(--color-border-strong);
+    box-shadow: var(--shadow-sm);
+  }
 
-#panic-button {
-  background: var(--color-danger);
-}
-
-#panic-button:hover {
-  background: var(--color-danger-hover);
+  .todo-done-btn:hover {
+    background: var(--color-success-bg);
+    color: var(--color-success-text);
+    border-color: var(--color-success-border);
+  }
 }
 
 /* Forms */
@@ -199,21 +256,24 @@ select,
 textarea {
   font-family: inherit;
   font-size: 0.875rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0.55rem 0.8rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
   color: var(--color-text);
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition: border-color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
 }
 
 input::placeholder {
   color: var(--color-text-faint);
 }
 
-input:hover,
-select:hover {
-  border-color: var(--color-border-strong);
+@media (hover: hover) and (pointer: fine) {
+  input:hover,
+  select:hover {
+    border-color: var(--color-border-strong);
+  }
 }
 
 input:focus,
@@ -229,11 +289,12 @@ label {
   color: var(--color-text-muted);
 }
 
-/* Dashboard — timetable */
+/* Timetable */
 #weekly-timetable {
   font-size: 0.8125rem;
   border-radius: var(--radius-md);
   overflow: hidden;
+  border: 1px solid var(--color-border);
 }
 
 #weekly-timetable thead {
@@ -242,6 +303,9 @@ label {
 
 #weekly-timetable th {
   font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--color-text-muted);
   border-bottom: 1px solid var(--color-border);
 }
@@ -251,32 +315,44 @@ label {
   border-bottom: 1px solid var(--color-border);
 }
 
-#weekly-timetable tbody tr:hover td {
-  background: var(--color-bg-subtle);
+#weekly-timetable tbody th {
+  color: var(--color-text-faint);
+  font-weight: 500;
+  width: 4.5rem;
 }
 
 #weekly-timetable td:not(:empty) {
   font-weight: 500;
   color: var(--color-text);
+  background: var(--color-accent-subtle);
+  border-radius: var(--radius-sm);
 }
 
-/* Dashboard — lists */
+@media (hover: hover) and (pointer: fine) {
+  #weekly-timetable tbody tr:hover td:not(:empty) {
+    background: rgba(37, 99, 235, 0.12);
+  }
+}
+
+/* Dashboard lists */
 #deadlines-list li,
 #announcements-list li,
 #upcoming-events-list li {
-  padding: 0.65rem 0.75rem;
+  padding: 0.75rem 0.85rem;
   border-radius: var(--radius-md);
   background: var(--color-bg-subtle);
   border: 1px solid transparent;
   font-size: 0.875rem;
-  transition: border-color var(--transition), background var(--transition);
 }
 
-#deadlines-list li:hover,
-#announcements-list li:hover,
-#upcoming-events-list li:hover {
-  background: var(--color-surface);
-  border-color: var(--color-border);
+@media (hover: hover) and (pointer: fine) {
+  #deadlines-list li:hover,
+  #announcements-list li:hover,
+  #upcoming-events-list li:hover {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    transform: translateX(2px);
+  }
 }
 
 #deadlines-list li {
@@ -303,25 +379,31 @@ label {
 
 #quick-links a {
   display: inline-block;
-  padding: 0.35rem 0.75rem;
+  padding: 0.4rem 0.85rem;
   border-radius: var(--radius-full);
   background: var(--color-accent-subtle);
   font-size: 0.8125rem;
   font-weight: 500;
+  transition: background var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
 }
 
-#quick-links a:hover {
-  background: var(--color-accent);
-  color: #fff;
+@media (hover: hover) and (pointer: fine) {
+  #quick-links a:hover {
+    background: var(--color-accent);
+    color: #fff;
+    transform: translateY(-1px);
+  }
 }
 
-/* Communities */
 #communities-page-heading,
 #calendar-page-heading,
 #events-page-heading {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
+/* Communities */
 .community-item {
   font-family: inherit;
   font-size: 0.875rem;
@@ -329,11 +411,7 @@ label {
   border-radius: var(--radius-md);
   background: transparent;
   color: var(--color-text);
-  transition: background var(--transition), border-color var(--transition);
-}
-
-.community-item:hover {
-  background: var(--color-bg-subtle);
+  box-shadow: none;
 }
 
 .community-item[aria-current="true"] {
@@ -360,11 +438,10 @@ label {
 
 #chat-panel {
   background: var(--color-bg-subtle);
-  border-color: var(--color-border);
 }
 
 #chat-header {
-  padding-bottom: 0.75rem;
+  padding-bottom: 0.85rem;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -377,19 +454,20 @@ label {
   background: var(--color-surface);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
+  scroll-behavior: smooth;
 }
 
 .chat-message {
-  padding: 0.65rem 0.85rem;
+  padding: 0.7rem 0.9rem;
   border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) var(--radius-sm);
   background: var(--color-bg-subtle);
   border: 1px solid var(--color-border);
-  animation: fadeIn 0.25s ease;
+  max-width: 78%;
 }
 
 .chat-message--self {
   border-radius: var(--radius-lg) var(--radius-lg) var(--radius-sm) var(--radius-lg);
-  background: var(--color-accent-subtle);
+  background: linear-gradient(135deg, var(--color-accent-subtle), rgba(37, 99, 235, 0.06));
   border-color: var(--color-accent-border);
 }
 
@@ -398,19 +476,17 @@ label {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem 0.5rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
 }
 
-.chat-sender {
-  font-size: 0.8125rem;
-}
+.chat-sender { font-size: 0.8125rem; }
 
 .chat-role {
-  font-size: 0.6875rem;
-  font-weight: 600;
+  font-size: 0.625rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0.1rem 0.4rem;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.45rem;
   border-radius: var(--radius-sm);
 }
 
@@ -423,25 +499,23 @@ label {
 .chat-body {
   margin: 0;
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 #community-members-list li {
-  padding: 0.5rem 0.65rem;
+  padding: 0.55rem 0.7rem;
   border-radius: var(--radius-md);
   font-size: 0.875rem;
 }
 
-#community-members-list li:hover {
-  background: var(--color-bg-subtle);
+@media (hover: hover) and (pointer: fine) {
+  #community-members-list li:hover {
+    background: var(--color-bg-subtle);
+  }
 }
 
 #community-members-list li[data-role="lecturer"] {
   border-left: 3px solid var(--color-role-lecturer);
-}
-
-#community-members-list li[data-role="student"] {
-  border-left: 3px solid var(--color-border-strong);
 }
 
 #community-members-list span {
@@ -458,11 +532,11 @@ label {
 }
 
 #calendar-weekdays span {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.6875rem;
+  font-weight: 700;
   color: var(--color-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
   padding: 0.35rem;
 }
 
@@ -476,30 +550,25 @@ label {
   background: var(--color-surface);
   color: var(--color-text);
   cursor: pointer;
-  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
-}
-
-.calendar-day:hover {
-  border-color: var(--color-accent-border);
-  background: var(--color-bg-subtle);
+  box-shadow: none;
 }
 
 .calendar-day[aria-current="date"] {
   border-color: var(--color-accent);
   background: var(--color-accent-subtle);
-  box-shadow: 0 0 0 2px var(--color-accent-subtle);
+  box-shadow: inset 0 0 0 1px var(--color-accent-border);
   font-weight: 700;
   color: var(--color-accent);
 }
 
 .calendar-marker {
   display: inline-block;
-  font-size: 0.625rem;
-  font-weight: 600;
-  padding: 0.1rem 0.35rem;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  padding: 0.12rem 0.4rem;
   border-radius: var(--radius-sm);
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
 .calendar-marker--event {
@@ -517,32 +586,19 @@ label {
   color: var(--color-text-muted);
 }
 
-#calendar-legend .calendar-marker {
-  margin-right: 0.35rem;
-  vertical-align: middle;
-}
-
 .todo-item {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.65rem 0.75rem;
+  padding: 0.7rem 0.85rem;
   border-radius: var(--radius-md);
   background: var(--color-bg-subtle);
   border: 1px solid var(--color-border);
   font-size: 0.875rem;
-  transition: opacity var(--transition);
 }
 
-.todo-item:hover {
-  border-color: var(--color-border-strong);
-}
-
-.todo-title {
-  flex: 1;
-  font-weight: 500;
-}
+.todo-title { flex: 1; font-weight: 500; }
 
 .todo-due {
   font-size: 0.8125rem;
@@ -550,22 +606,8 @@ label {
 }
 
 .todo-done-btn {
-  padding: 0.25rem 0.65rem;
+  padding: 0.3rem 0.7rem;
   font-size: 0.75rem;
-  background: var(--color-surface);
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-}
-
-.todo-done-btn:hover {
-  background: var(--color-success-bg);
-  color: var(--color-success-text);
-  border-color: var(--color-success-border);
-}
-
-.todo-item.is-done {
-  opacity: 0.55;
-  text-decoration: line-through;
 }
 
 .todo-item.is-done .todo-done-btn {
@@ -575,16 +617,16 @@ label {
 }
 
 #day-detail-panel h3 {
-  margin-top: 0.75rem;
+  margin-top: 0.85rem;
   color: var(--color-text-muted);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 #selected-day-label {
   font-weight: 600;
-  color: var(--color-text);
+  font-size: 1rem;
 }
 
 #day-events-list li,
@@ -605,21 +647,22 @@ label {
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
-  animation: fadeIn 0.3s ease;
+  padding: 1.15rem;
+  gap: 0.65rem;
 }
 
-.event-card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-border-strong);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .event-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-border-strong);
+  }
 }
 
 .event-title {
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   font-weight: 600;
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
 .event-meta {
@@ -631,18 +674,18 @@ label {
 .event-summary {
   font-size: 0.875rem;
   color: var(--color-text);
-  line-height: 1.55;
+  line-height: 1.6;
   margin: 0;
 }
 
 .event-category {
   display: inline-block;
   align-self: flex-start;
-  font-size: 0.6875rem;
-  font-weight: 600;
+  font-size: 0.625rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0.2rem 0.55rem;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.6rem;
   border-radius: var(--radius-full);
 }
 
@@ -651,29 +694,6 @@ label {
   margin-top: 0.5rem;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes checkPop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-  100% { transform: scale(1); }
-}
-
-.todo-item.is-done {
-  animation: checkPop 0.3s ease;
-}
-
-/* Mobile nav open state */
 @media (max-width: 768px) {
   #main-nav.is-open {
     padding: 0.5rem 0;
@@ -686,6 +706,14 @@ label {
   }
 
   .chat-message {
-    max-width: 92%;
+    max-width: 90%;
   }
+}
+
+[data-theme="dark"] #site-header {
+  background: rgba(30, 41, 59, 0.85);
+}
+
+body.survival-mode #site-header {
+  background: rgba(26, 35, 50, 0.92);
 }
