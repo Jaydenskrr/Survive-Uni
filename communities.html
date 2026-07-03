@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Communities — Survive Uni</title>
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <header id="site-header">
+    <div id="site-header-inner">
+      <a id="site-logo" href="dashboard.html">Survive Uni</a>
+      <button type="button" id="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+      <nav id="main-nav" aria-label="Main">
+        <a href="dashboard.html" data-nav="dashboard">Dashboard</a>
+        <a href="communities.html" data-nav="communities" aria-current="page">Communities</a>
+        <a href="calendar.html" data-nav="calendar">Calendar</a>
+        <a href="events.html" data-nav="events">Events</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="page-main">
+    <h1 id="communities-page-heading">Communities</h1>
+
+    <div id="communities-layout">
+      <aside id="communities-sidebar" class="panel" aria-labelledby="communities-sidebar-heading">
+        <h2 id="communities-sidebar-heading" hidden>Your communities</h2>
+
+        <form id="community-search" role="search" aria-label="Search communities">
+          <label for="community-search-input">Search</label>
+          <input type="search" id="community-search-input" name="q" placeholder="Find a community…">
+          <button type="submit" id="community-search-btn">Search</button>
+        </form>
+
+        <form id="join-community-form" aria-label="Join a community">
+          <label for="join-community-code">Join code</label>
+          <input type="text" id="join-community-code" name="code" placeholder="e.g. CS101-2026">
+          <button type="submit" id="join-community-btn">Join</button>
+        </form>
+
+        <ul id="communities-list" aria-label="Communities">
+          <li>
+            <button type="button" class="community-item" data-community-id="cs101" aria-current="true">
+              CS101 — Intro to Programming
+              <span class="community-unread">2</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="community-item" data-community-id="math201">
+              Math201 — Calculus II
+            </button>
+          </li>
+          <li>
+            <button type="button" class="community-item" data-community-id="hackathon">
+              Hackathon Squad 2026
+            </button>
+          </li>
+        </ul>
+      </aside>
+
+      <section id="chat-panel" class="panel" aria-labelledby="chat-header-title">
+        <header id="chat-header">
+          <h2 id="chat-header-title">CS101 — Intro to Programming</h2>
+          <span id="chat-header-meta">48 members</span>
+        </header>
+
+        <div id="chat-messages" aria-live="polite" aria-label="Chat messages">
+          <article class="chat-message" data-message-id="1">
+            <header>
+              <strong class="chat-sender">Dr. Lee</strong>
+              <span class="chat-role">Lecturer</span>
+              <time class="chat-timestamp" datetime="2026-07-03T09:15:00">09:15</time>
+            </header>
+            <p class="chat-body">Assignment 2 rubric is posted. Due Friday.</p>
+          </article>
+          <article class="chat-message chat-message--self" data-message-id="2">
+            <header>
+              <strong class="chat-sender">You</strong>
+              <span class="chat-role">Student</span>
+              <time class="chat-timestamp" datetime="2026-07-03T09:22:00">09:22</time>
+            </header>
+            <p class="chat-body">Thanks! Will the office hours be extended this week?</p>
+          </article>
+          <article class="chat-message" data-message-id="3">
+            <header>
+              <strong class="chat-sender">Alice</strong>
+              <span class="chat-role">Student</span>
+              <time class="chat-timestamp" datetime="2026-07-03T09:30:00">09:30</time>
+            </header>
+            <p class="chat-body">Study group in the library at 2pm if anyone wants to join.</p>
+          </article>
+        </div>
+
+        <form id="chat-compose-form" aria-label="Send a message">
+          <label for="chat-input">Message</label>
+          <input type="text" id="chat-input" name="message" placeholder="Type a message…" autocomplete="off">
+          <button type="submit" id="chat-send-btn">Send</button>
+        </form>
+      </section>
+
+      <aside id="members-panel" class="panel" aria-labelledby="members-heading">
+        <h2 id="members-heading">Members</h2>
+
+        <label for="member-role-filter">Filter by role</label>
+        <select id="member-role-filter" name="role">
+          <option value="all">All</option>
+          <option value="lecturer">Lecturers</option>
+          <option value="student">Students</option>
+        </select>
+
+        <ul id="community-members-list" aria-label="Community members">
+          <li data-member-id="lee" data-role="lecturer">
+            <strong>Dr. Lee</strong>
+            <span> — Lecturer</span>
+          </li>
+          <li data-member-id="alice" data-role="student">
+            <strong>Alice</strong>
+            <span> — Student</span>
+          </li>
+          <li data-member-id="bob" data-role="student">
+            <strong>Bob</strong>
+            <span> — Student</span>
+          </li>
+          <li data-member-id="carol" data-role="student">
+            <strong>Carol</strong>
+            <span> — Student</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer id="site-footer">
+    <p>Survive Uni — Campus Hub</p>
+  </footer>
+
+  <template id="community-item-template">
+    <li>
+      <button type="button" class="community-item" data-community-id="">
+        <span class="community-name"></span>
+        <span class="community-unread" hidden></span>
+      </button>
+    </li>
+  </template>
+
+  <template id="chat-message-template">
+    <article class="chat-message">
+      <header>
+        <strong class="chat-sender"></strong>
+        <span class="chat-role"></span>
+        <time class="chat-timestamp"></time>
+      </header>
+      <p class="chat-body"></p>
+    </article>
+  </template>
+
+  <script src="js/storage.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/communities.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

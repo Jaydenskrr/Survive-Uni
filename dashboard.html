@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Survive Uni</title>
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <header id="site-header">
+    <div id="site-header-inner">
+      <a id="site-logo" href="dashboard.html">Survive Uni</a>
+      <button type="button" id="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+      <nav id="main-nav" aria-label="Main">
+        <a href="dashboard.html" data-nav="dashboard" aria-current="page">Dashboard</a>
+        <a href="communities.html" data-nav="communities">Communities</a>
+        <a href="calendar.html" data-nav="calendar">Calendar</a>
+        <a href="events.html" data-nav="events">Events</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="page-main">
+    <section id="today-summary" class="panel" aria-labelledby="today-summary-heading">
+      <h1 id="today-summary-heading">Dashboard</h1>
+      <p id="today-date-label">Today</p>
+      <p id="today-summary-text">Your schedule and updates at a glance.</p>
+    </section>
+
+    <div id="dashboard-grid">
+      <div id="dashboard-primary">
+        <section id="timetable-panel" class="panel" aria-labelledby="timetable-heading">
+          <h2 id="timetable-heading">Timetable</h2>
+          <table id="weekly-timetable">
+            <thead>
+              <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Mon</th>
+                <th scope="col">Tue</th>
+                <th scope="col">Wed</th>
+                <th scope="col">Thu</th>
+                <th scope="col">Fri</th>
+              </tr>
+            </thead>
+            <tbody id="timetable-body">
+              <tr>
+                <th scope="row">09:00</th>
+                <td>CS101 Lecture</td>
+                <td></td>
+                <td>CS101 Lab</td>
+                <td></td>
+                <td>CS101 Tutorial</td>
+              </tr>
+              <tr>
+                <th scope="row">11:00</th>
+                <td></td>
+                <td>Math201 Lecture</td>
+                <td></td>
+                <td>Math201 Lecture</td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">14:00</th>
+                <td>Study Group</td>
+                <td></td>
+                <td></td>
+                <td>Project Clinic</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="events-preview-panel" class="panel" aria-labelledby="events-preview-heading">
+          <h2 id="events-preview-heading">Upcoming Events</h2>
+          <ul id="upcoming-events-list" aria-live="polite">
+            <li>
+              <strong>Career Fair</strong>
+              <span> — Fri 10 Jul, Main Hall</span>
+            </li>
+            <li>
+              <strong>Hackathon Kickoff</strong>
+              <span> — Sat 11 Jul, Innovation Lab</span>
+            </li>
+          </ul>
+          <p><a id="events-preview-link" href="events.html">View all events</a></p>
+        </section>
+      </div>
+
+      <aside id="dashboard-sidebar">
+        <section id="deadlines-panel" class="panel" aria-labelledby="deadlines-heading">
+          <h2 id="deadlines-heading">Deadlines</h2>
+          <ul id="deadlines-list" aria-live="polite">
+            <li>
+              <strong>CS101 Assignment 2</strong>
+              <span> — due Fri 4 Jul</span>
+            </li>
+            <li>
+              <strong>Math201 Problem Set 5</strong>
+              <span> — due Mon 7 Jul</span>
+            </li>
+          </ul>
+          <p id="deadlines-empty" hidden>No upcoming deadlines.</p>
+        </section>
+
+        <section id="announcements-panel" class="panel" aria-labelledby="announcements-heading">
+          <h2 id="announcements-heading">Announcements</h2>
+          <ul id="announcements-list" aria-live="polite">
+            <li>
+              <strong>Library extended hours</strong>
+              <span> — Open until midnight during exam week.</span>
+            </li>
+            <li>
+              <strong>Campus Wi-Fi maintenance</strong>
+              <span> — Sat 5 Jul, 2–4 AM.</span>
+            </li>
+          </ul>
+        </section>
+
+        <nav id="quick-links" class="panel" aria-labelledby="quick-links-heading">
+          <h2 id="quick-links-heading">Quick Links</h2>
+          <ul>
+            <li><a href="calendar.html">Open Calendar</a></li>
+            <li><a href="communities.html">Join a Community</a></li>
+            <li><a href="events.html">Browse Events</a></li>
+          </ul>
+        </nav>
+      </aside>
+    </div>
+  </main>
+
+  <footer id="site-footer">
+    <p>Survive Uni — Campus Hub</p>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -73,6 +73,11 @@
     return EFFORT.QUICK;
   }
 
+  function normalizeOwner(value) {
+    if (value == null || value === '') return null;
+    return String(value).trim() || null;
+  }
+
   function isSnoozed(task) {
     if (!task.snoozedUntil) return false;
     const until = parseISODate(task.snoozedUntil);
@@ -87,14 +92,7 @@
   function persist(tasks) {
     const ok = window.SurviveUni.storage.saveTasks(tasks);
     if (!ok) throw new Error('Failed to save tasks');
-    emitChange(tasks);
     return tasks;
-  }
-
-  function emitChange(tasks) {
-    document.dispatchEvent(
-      new CustomEvent('tasks:changed', { detail: { tasks } })
-    );
   }
 
   function findById(id) {
@@ -116,15 +114,16 @@
     const title = (input.title || '').trim();
     if (!title) throw new Error('Task title is required');
 
-    const task = {
+    const task = window.SurviveUni.storage.normalizeTask({
       id: generateId(),
       title,
       dueDate: normalizeDueDate(input.dueDate),
       effort: normalizeEffort(input.effort),
       done: false,
       snoozedUntil: null,
+      owner: normalizeOwner(input.owner),
       createdAt: new Date().toISOString(),
-    };
+    });
 
     const tasks = loadAll().concat(task);
     persist(tasks);
@@ -140,10 +139,22 @@
     const index = tasks.findIndex((t) => t.id === id);
     if (index === -1) return null;
 
-    const updated = updater({ ...tasks[index] });
+    const updated = window.SurviveUni.storage.normalizeTask(
+      updater({ ...tasks[index] })
+    );
+    if (!updated) return null;
+
     tasks[index] = updated;
     persist(tasks);
     return updated;
+  }
+
+  function update(id, patch) {
+    return updateTask(id, (task) => ({ ...task, ...patch }));
+  }
+
+  function assignOwner(id, owner) {
+    return update(id, { owner: normalizeOwner(owner) });
   }
 
   function markDone(id) {
@@ -227,10 +238,13 @@
     EFFORT_EMOJI,
     add,
     list,
+    update,
+    assignOwner,
     markDone,
     snooze,
     snoozeForDays,
     getByUrgency,
+    getUrgencyBucket,
     findById,
     daysUntil,
     getEffortLabel,

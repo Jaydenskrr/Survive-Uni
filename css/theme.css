@@ -1,0 +1,393 @@
+/* Person B — Lively campus palette (each block gets its own vibe) */
+
+:root {
+  --color-bg: #f0f4ff;
+  --color-bg-subtle: #e8eeff;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-border: rgba(15, 23, 42, 0.08);
+  --color-border-strong: rgba(15, 23, 42, 0.14);
+
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-text-faint: #94a3b8;
+
+  --color-accent: #6366f1;
+  --color-accent-hover: #4f46e5;
+  --color-accent-subtle: #eef2ff;
+  --color-accent-border: #c7d2fe;
+  --color-accent-glow: rgba(99, 102, 241, 0.2);
+
+  --color-urgent: #ef4444;
+  --color-urgent-bg: #fef2f2;
+  --color-urgent-text: #b91c1c;
+  --color-soon: #f59e0b;
+  --color-soon-bg: #fffbeb;
+  --color-soon-text: #b45309;
+  --color-chill: #10b981;
+  --color-chill-bg: #ecfdf5;
+  --color-chill-text: #047857;
+
+  --color-event: #8b5cf6;
+  --color-event-bg: #f5f3ff;
+  --color-event-text: #6d28d9;
+
+  --color-role-lecturer: #6366f1;
+  --color-role-lecturer-bg: #eef2ff;
+  --color-role-lecturer-text: #4338ca;
+  --color-role-student-bg: #fce7f3;
+  --color-role-student-text: #be185d;
+
+  --color-success-bg: #d1fae5;
+  --color-success-text: #047857;
+  --color-success-border: #6ee7b7;
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+
+  --cat-career-bg: #fde68a;
+  --cat-career-text: #92400e;
+  --cat-academic-bg: #bfdbfe;
+  --cat-academic-text: #1d4ed8;
+  --cat-social-bg: #fbcfe8;
+  --cat-social-text: #be185d;
+  --cat-sports-bg: #bbf7d0;
+  --cat-sports-text: #15803d;
+
+  /* Block themes */
+  --block-hero: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #f97316 100%);
+  --block-timetable: linear-gradient(160deg, #ecfeff 0%, #cffafe 100%);
+  --block-timetable-border: #22d3ee;
+  --block-deadlines: linear-gradient(160deg, #fff1f2 0%, #ffe4e6 100%);
+  --block-deadlines-border: #fb7185;
+  --block-announce: linear-gradient(160deg, #fefce8 0%, #fef9c3 100%);
+  --block-announce-border: #facc15;
+  --block-events-prev: linear-gradient(160deg, #f5f3ff 0%, #ede9fe 100%);
+  --block-events-prev-border: #a78bfa;
+  --block-quick: linear-gradient(160deg, #ecfdf5 0%, #d1fae5 100%);
+  --block-quick-border: #34d399;
+  --block-communities: linear-gradient(160deg, #fdf2f8 0%, #fce7f3 100%);
+  --block-communities-border: #f472b6;
+  --block-chat: linear-gradient(160deg, #eff6ff 0%, #dbeafe 100%);
+  --block-chat-border: #60a5fa;
+  --block-members: linear-gradient(160deg, #faf5ff 0%, #f3e8ff 100%);
+  --block-members-border: #c084fc;
+  --block-calendar: linear-gradient(160deg, #fff7ed 0%, #ffedd5 100%);
+  --block-calendar-border: #fb923c;
+  --block-todo: linear-gradient(160deg, #fdf4ff 0%, #fae8ff 100%);
+  --block-todo-border: #e879f9;
+  --block-day: linear-gradient(160deg, #f0fdfa 0%, #ccfbf1 100%);
+  --block-day-border: #2dd4bf;
+  --block-filter: linear-gradient(160deg, #f8fafc 0%, #e2e8f0 100%);
+  --block-filter-border: #94a3b8;
+}
+
+.chat-message .chat-role {
+  background: var(--color-role-student-bg);
+  color: var(--color-role-student-text);
+}
+
+.chat-message[data-message-id="1"] .chat-role {
+  background: var(--color-role-lecturer-bg);
+  color: var(--color-role-lecturer-text);
+}
+
+.event-card[data-event-id="1"] .event-category {
+  background: var(--cat-career-bg);
+  color: var(--cat-career-text);
+}
+
+.event-card[data-event-id="2"] .event-category {
+  background: var(--cat-academic-bg);
+  color: var(--cat-academic-text);
+}
+
+.event-card[data-event-id="3"] .event-category {
+  background: var(--cat-sports-bg);
+  color: var(--cat-sports-text);
+}
+
+/* ── Each block: bold gradient fill + colored border ── */
+
+#today-summary {
+  background: var(--block-hero);
+  border: none;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.35);
+}
+
+#today-summary::before {
+  display: none;
+}
+
+#today-summary h1,
+#today-summary #today-summary-heading {
+  color: #fff;
+}
+
+#today-summary #today-date-label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#today-summary #today-summary-text {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+#timetable-panel {
+  background: var(--block-timetable);
+  border-color: var(--block-timetable-border);
+  border-width: 2px;
+}
+
+#timetable-panel::before {
+  background: linear-gradient(90deg, #06b6d4, #3b82f6);
+  height: 4px;
+}
+
+#timetable-panel h2 {
+  color: #0e7490;
+}
+
+#deadlines-panel {
+  background: var(--block-deadlines);
+  border-color: var(--block-deadlines-border);
+  border-width: 2px;
+}
+
+#deadlines-panel::before {
+  background: linear-gradient(90deg, #ef4444, #f97316);
+  height: 4px;
+}
+
+#deadlines-panel h2 {
+  color: #be123c;
+}
+
+#announcements-panel {
+  background: var(--block-announce);
+  border-color: var(--block-announce-border);
+  border-width: 2px;
+}
+
+#announcements-panel::before {
+  background: linear-gradient(90deg, #eab308, #f97316);
+  height: 4px;
+}
+
+#announcements-panel h2 {
+  color: #a16207;
+}
+
+#events-preview-panel {
+  background: var(--block-events-prev);
+  border-color: var(--block-events-prev-border);
+  border-width: 2px;
+}
+
+#events-preview-panel::before {
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  height: 4px;
+}
+
+#events-preview-panel h2 {
+  color: #7c3aed;
+}
+
+#quick-links {
+  background: var(--block-quick);
+  border-color: var(--block-quick-border);
+  border-width: 2px;
+}
+
+#quick-links::before {
+  background: linear-gradient(90deg, #10b981, #22c55e);
+  height: 4px;
+}
+
+#quick-links h2 {
+  color: #047857;
+}
+
+#communities-sidebar {
+  background: var(--block-communities);
+  border-color: var(--block-communities-border);
+  border-width: 2px;
+}
+
+#communities-sidebar::before {
+  background: linear-gradient(90deg, #ec4899, #f472b6);
+  height: 4px;
+}
+
+#chat-panel {
+  background: var(--block-chat);
+  border-color: var(--block-chat-border);
+  border-width: 2px;
+}
+
+#chat-panel::before {
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  height: 4px;
+}
+
+#members-panel {
+  background: var(--block-members);
+  border-color: var(--block-members-border);
+  border-width: 2px;
+}
+
+#members-panel::before {
+  background: linear-gradient(90deg, #a855f7, #6366f1);
+  height: 4px;
+}
+
+#members-panel h2 {
+  color: #7e22ce;
+}
+
+#calendar-panel {
+  background: var(--block-calendar);
+  border-color: var(--block-calendar-border);
+  border-width: 2px;
+}
+
+#calendar-panel::before {
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  height: 4px;
+}
+
+#calendar-panel h2,
+#calendar-toolbar h2 {
+  color: #c2410c;
+}
+
+#todo-panel {
+  background: var(--block-todo);
+  border-color: var(--block-todo-border);
+  border-width: 2px;
+}
+
+#todo-panel::before {
+  background: linear-gradient(90deg, #d946ef, #ec4899);
+  height: 4px;
+}
+
+#todo-panel h2 {
+  color: #a21caf;
+}
+
+#day-detail-panel {
+  background: var(--block-day);
+  border-color: var(--block-day-border);
+  border-width: 2px;
+}
+
+#day-detail-panel::before {
+  background: linear-gradient(90deg, #14b8a6, #10b981);
+  height: 4px;
+}
+
+#events-filter-bar {
+  background: var(--block-filter);
+  border-color: var(--block-filter-border);
+  border-width: 2px;
+}
+
+#events-filter-bar::before {
+  background: linear-gradient(90deg, #64748b, #94a3b8);
+  height: 4px;
+}
+
+/* Event cards — rotating lively tints */
+.event-card[data-event-id="1"] {
+  background: linear-gradient(160deg, #fffbeb 0%, #fef3c7 100%);
+  border-color: #fbbf24;
+}
+
+.event-card[data-event-id="2"] {
+  background: linear-gradient(160deg, #eff6ff 0%, #dbeafe 100%);
+  border-color: #60a5fa;
+}
+
+.event-card[data-event-id="3"] {
+  background: linear-gradient(160deg, #ecfdf5 0%, #bbf7d0 100%);
+  border-color: #4ade80;
+}
+
+.event-card::before {
+  height: 4px;
+}
+
+.event-card[data-event-id="1"]::before {
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+
+.event-card[data-event-id="2"]::before {
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+}
+
+.event-card[data-event-id="3"]::before {
+  background: linear-gradient(90deg, #22c55e, #10b981);
+}
+
+[data-theme="dark"] {
+  --color-bg: #0f0f1a;
+  --color-bg-subtle: #1a1a2e;
+  --color-surface: #1e1e32;
+  --color-surface-raised: #252540;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+}
+
+body.survival-mode {
+  --color-bg: #0a0a12;
+  --color-accent: #818cf8;
+}
+
+body.survival-mode #today-summary {
+  background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%);
+  box-shadow: 0 8px 32px rgba(239, 68, 68, 0.3);
+}
+
+body.survival-mode #quick-links,
+body.survival-mode #announcements-panel,
+body.survival-mode #events-preview-panel,
+body.survival-mode #members-panel {
+  opacity: 0.35;
+  pointer-events: none;
+  filter: saturate(0.3);
+}
+
+body.survival-mode #deadlines-panel,
+body.survival-mode #timetable-panel,
+body.survival-mode #todo-panel {
+  opacity: 1;
+  box-shadow: 0 0 0 2px #ef4444, 0 12px 40px rgba(239, 68, 68, 0.2);
+}
+
+body.survival-mode .calendar-day:not([aria-current="date"]) {
+  opacity: 0.25;
+}
+
+body.survival-mode .calendar-day[aria-current="date"],
+body.survival-mode .calendar-day:has(.calendar-marker--assignment) {
+  opacity: 1;
+}
+
+body.survival-mode .calendar-marker--event:not(.calendar-marker--assignment) {
+  display: none;
+}
+
+body.survival-mode #site-header {
+  border-bottom-color: #ef4444;
+}
+
+body.survival-mode #site-logo::after {
+  content: " — SURVIVAL MODE";
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #fca5a5;
+  margin-left: 0.5rem;
+}
