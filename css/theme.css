@@ -1,63 +1,71 @@
-/* Person B — Modern SaaS theme tokens, categories, Survival Mode */
+/* Person B — Campus Hub theme (frontend-design: distinctive, subject-grounded) */
 
 :root {
-  /* Surfaces */
-  --color-bg: #f4f6f9;
-  --color-bg-subtle: #eef1f6;
-  --color-surface: #ffffff;
-  --color-border: #e2e8f0;
-  --color-border-strong: #cbd5e1;
+  /* Paper & ink — cool academic mist, not generic SaaS gray or AI cream */
+  --color-bg: #e8eef4;
+  --color-bg-subtle: #dce4ed;
+  --color-surface: #fafbfc;
+  --color-surface-raised: #ffffff;
+  --color-border: #c5d0de;
+  --color-border-strong: #9fb0c4;
 
-  /* Text */
-  --color-text: #0f172a;
-  --color-text-muted: #64748b;
-  --color-text-faint: #94a3b8;
+  /* Ink */
+  --color-text: #121a26;
+  --color-text-muted: #4a5d73;
+  --color-text-faint: #7a8da3;
 
-  /* Accent — SaaS blue */
-  --color-accent: #2563eb;
-  --color-accent-hover: #1d4ed8;
-  --color-accent-subtle: #eff6ff;
-  --color-accent-border: #bfdbfe;
+  /* Campus teal — signature accent (quad, wayfinding) */
+  --color-accent: #1a7f6e;
+  --color-accent-hover: #146658;
+  --color-accent-subtle: #e3f3ef;
+  --color-accent-border: #9fd4c8;
+  --color-accent-glow: rgba(26, 127, 110, 0.18);
 
-  /* Urgency / deadlines */
-  --color-urgent: #dc2626;
-  --color-urgent-bg: #fef2f2;
-  --color-urgent-text: #b91c1c;
-  --color-soon: #d97706;
-  --color-soon-bg: #fffbeb;
-  --color-soon-text: #b45309;
-  --color-chill: #16a34a;
-  --color-chill-bg: #f0fdf4;
-  --color-chill-text: #15803d;
+  /* Deadline urgency — burnt amber + ember (not generic red/yellow) */
+  --color-urgent: #c2410c;
+  --color-urgent-bg: #fef3eb;
+  --color-urgent-text: #9a3412;
+  --color-soon: #b45309;
+  --color-soon-bg: #fff8ed;
+  --color-soon-text: #92400e;
+  --color-chill: #2d6a4f;
+  --color-chill-bg: #ecfdf3;
+  --color-chill-text: #166534;
 
-  /* Events & calendar */
-  --color-event: #7c3aed;
-  --color-event-bg: #f5f3ff;
-  --color-event-text: #6d28d9;
+  /* Events — deep iris (lecture halls, posters) */
+  --color-event: #5b4d8a;
+  --color-event-bg: #f0edf8;
+  --color-event-text: #4c3d78;
 
   /* Roles */
-  --color-role-lecturer: #2563eb;
-  --color-role-lecturer-bg: #eff6ff;
-  --color-role-lecturer-text: #1d4ed8;
-  --color-role-student-bg: #f1f5f9;
-  --color-role-student-text: #475569;
+  --color-role-lecturer: #1a7f6e;
+  --color-role-lecturer-bg: #e3f3ef;
+  --color-role-lecturer-text: #146658;
+  --color-role-student-bg: #e8eef4;
+  --color-role-student-text: #4a5d73;
 
   /* Status */
-  --color-success-bg: #f0fdf4;
-  --color-success-text: #15803d;
-  --color-success-border: #bbf7d0;
-  --color-danger: #dc2626;
-  --color-danger-hover: #b91c1c;
+  --color-success-bg: #ecfdf3;
+  --color-success-text: #166534;
+  --color-success-border: #86efac;
+  --color-danger: #be123c;
+  --color-danger-hover: #9f1239;
 
-  /* Event category pills */
-  --cat-career-bg: #fef3c7;
-  --cat-career-text: #b45309;
-  --cat-academic-bg: #eff6ff;
-  --cat-academic-text: #1d4ed8;
-  --cat-social-bg: #fce7f3;
-  --cat-social-text: #be185d;
-  --cat-sports-bg: #ecfdf5;
-  --cat-sports-text: #047857;
+  /* Event categories */
+  --cat-career-bg: #fff4e0;
+  --cat-career-text: #a16207;
+  --cat-academic-bg: #e3f3ef;
+  --cat-academic-text: #146658;
+  --cat-social-bg: #fce8f4;
+  --cat-social-text: #9d174d;
+  --cat-sports-bg: #e8f8ef;
+  --cat-sports-text: #15803d;
+
+  /* Panel accent stripes (signature element) */
+  --stripe-default: linear-gradient(90deg, #1a7f6e, #5b4d8a);
+  --stripe-deadline: linear-gradient(90deg, #c2410c, #b45309);
+  --stripe-event: linear-gradient(90deg, #5b4d8a, #1a7f6e);
+  --stripe-chat: linear-gradient(90deg, #1a7f6e 0%, #2d6a4f 100%);
 }
 
 /* Chat role badges */
@@ -71,7 +79,7 @@
   color: var(--color-role-lecturer-text);
 }
 
-/* Event category colors */
+/* Event category pills */
 .event-card[data-event-id="1"] .event-category {
   background: var(--cat-career-bg);
   color: var(--cat-career-text);
@@ -87,49 +95,65 @@
   color: var(--cat-sports-text);
 }
 
-/* Dark theme (optional — toggle via data-theme on html) */
+/* Panel signature stripes */
+#today-summary::before { background: var(--stripe-default); }
+#timetable-panel::before { background: var(--stripe-default); }
+#deadlines-panel::before { background: var(--stripe-deadline); }
+#announcements-panel::before { background: linear-gradient(90deg, #1a7f6e, #4a5d73); }
+#events-preview-panel::before { background: var(--stripe-event); }
+#quick-links::before { background: var(--color-border-strong); }
+#communities-sidebar::before,
+#chat-panel::before { background: var(--stripe-chat); }
+#members-panel::before { background: linear-gradient(90deg, #4a5d73, #9fb0c4); }
+#calendar-panel::before { background: var(--stripe-event); }
+#todo-panel::before { background: var(--stripe-deadline); }
+#day-detail-panel::before { background: var(--stripe-default); }
+#events-filter-bar::before { background: var(--color-border-strong); }
+.event-card::before { background: var(--stripe-event); height: 2px; }
+
 [data-theme="dark"] {
-  --color-bg: #0f172a;
-  --color-bg-subtle: #1e293b;
-  --color-surface: #1e293b;
-  --color-border: #334155;
-  --color-border-strong: #475569;
-  --color-text: #f1f5f9;
-  --color-text-muted: #94a3b8;
-  --color-text-faint: #64748b;
-  --color-accent-subtle: #1e3a5f;
-  --color-accent-border: #1e40af;
-  --color-urgent-bg: #450a0a;
-  --color-urgent-text: #fca5a5;
-  --color-soon-bg: #451a03;
+  --color-bg: #0c1219;
+  --color-bg-subtle: #151d28;
+  --color-surface: #1a2332;
+  --color-surface-raised: #212d3d;
+  --color-border: #2a3848;
+  --color-border-strong: #3d5066;
+  --color-text: #e8eef4;
+  --color-text-muted: #94a8bc;
+  --color-text-faint: #647888;
+  --color-accent-subtle: #1a3330;
+  --color-accent-border: #2a6b5e;
+  --color-accent-glow: rgba(26, 127, 110, 0.25);
+  --color-urgent-bg: #3d1a0a;
+  --color-urgent-text: #fdba74;
+  --color-soon-bg: #3d2808;
   --color-soon-text: #fcd34d;
-  --color-event-bg: #2e1065;
+  --color-event-bg: #2a2240;
   --color-event-text: #c4b5fd;
-  --color-role-student-bg: #334155;
+  --color-role-student-bg: #212d3d;
   --color-role-student-text: #cbd5e1;
-  --color-role-lecturer-bg: #1e3a5f;
-  --color-role-lecturer-text: #93c5fd;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --color-role-lecturer-bg: #1a3330;
+  --color-role-lecturer-text: #6ee7d7;
 }
 
-/* Survival Mode — exam week stress theme */
 body.survival-mode {
-  --color-bg: #0c1222;
-  --color-bg-subtle: #151d2e;
-  --color-surface: #1a2332;
-  --color-border: #2a3544;
-  --color-text: #e8edf4;
-  --color-text-muted: #8b9cb3;
-  --color-accent: #3b82f6;
-  --color-accent-subtle: #1a2744;
-  --color-urgent: #f87171;
-  --color-urgent-bg: #3b1515;
-  --color-urgent-text: #fca5a5;
+  --color-bg: #080d14;
+  --color-bg-subtle: #0f1620;
+  --color-surface: #141c28;
+  --color-border: #243040;
+  --color-text: #e2e9f2;
+  --color-text-muted: #8499ad;
+  --color-accent: #2dd4bf;
+  --color-accent-subtle: #0f2926;
+  --color-urgent: #fb7185;
+  --color-urgent-bg: #3f1219;
+  --color-urgent-text: #fecdd3;
 }
 
 body.survival-mode #today-summary {
-  background: linear-gradient(135deg, #1a2744 0%, #1a2332 100%);
+  background:
+    linear-gradient(160deg, rgba(194, 65, 12, 0.12) 0%, transparent 45%),
+    var(--color-surface);
   border-color: var(--color-urgent);
 }
 
@@ -142,20 +166,20 @@ body.survival-mode #quick-links,
 body.survival-mode #announcements-panel,
 body.survival-mode #events-preview-panel,
 body.survival-mode #members-panel {
-  opacity: 0.45;
+  opacity: 0.4;
   pointer-events: none;
-  filter: grayscale(0.3);
+  filter: saturate(0.4);
 }
 
 body.survival-mode #deadlines-panel,
 body.survival-mode #timetable-panel,
 body.survival-mode #todo-panel {
   opacity: 1;
-  box-shadow: 0 0 0 2px var(--color-urgent-bg);
+  box-shadow: 0 0 0 1px var(--color-urgent-bg), 0 8px 32px var(--color-accent-glow);
 }
 
 body.survival-mode .calendar-day:not([aria-current="date"]) {
-  opacity: 0.35;
+  opacity: 0.3;
 }
 
 body.survival-mode .calendar-day[aria-current="date"],
@@ -172,9 +196,12 @@ body.survival-mode #site-header {
 }
 
 body.survival-mode #site-logo::after {
-  content: " — Survival Mode";
-  font-size: 0.75rem;
-  font-weight: 500;
+  content: " — exam week";
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--color-urgent);
-  margin-left: 0.35rem;
+  margin-left: 0.5rem;
 }

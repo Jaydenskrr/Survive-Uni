@@ -1,77 +1,64 @@
-/* Person B — Motion & micro-interactions (Emil design-eng principles) */
+/* Person B — Motion (restrained; frontend-design: one orchestrated moment) */
 
 :root {
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
   --duration-fast: 140ms;
-  --duration-ui: 220ms;
-  --duration-enter: 380ms;
+  --duration-ui: 200ms;
+  --duration-enter: 320ms;
 }
 
-/* Page load — stagger panels (occasional, decorative) */
-#page-main > .panel,
-#page-main > h1,
+/* Single page-load moment — main content only */
+#page-main {
+  animation: pageIn var(--duration-enter) var(--ease-out) both;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Light stagger on first-level panels only */
 #dashboard-grid .panel,
-#communities-layout > *,
-#calendar-layout > *,
+#today-summary.panel,
+#communities-layout > .panel,
+#calendar-layout > .panel,
 #calendar-sidebar > .panel,
-#events-layout > * {
+#events-layout > .panel,
+#events-feed-section {
   opacity: 0;
-  transform: translateY(10px) scale(0.98);
-  animation: revealUp var(--duration-enter) var(--ease-out) forwards;
+  animation: revealUp var(--duration-ui) var(--ease-out) forwards;
+  transform: translateY(8px);
 }
 
-#page-main > .panel { animation-delay: 0ms; }
-#dashboard-grid .panel:nth-child(1),
-#communities-layout > *:nth-child(1),
-#calendar-layout > *:nth-child(1),
-#events-layout > *:nth-child(1) { animation-delay: 40ms; }
-#dashboard-grid .panel:nth-child(2),
-#communities-layout > *:nth-child(2),
-#calendar-layout > *:nth-child(2),
-#events-layout > *:nth-child(2) { animation-delay: 80ms; }
-#communities-layout > *:nth-child(3) { animation-delay: 120ms; }
+#today-summary.panel { animation-delay: 40ms; }
+
 #dashboard-primary .panel:nth-child(1) { animation-delay: 60ms; }
 #dashboard-primary .panel:nth-child(2) { animation-delay: 100ms; }
 #dashboard-sidebar .panel:nth-child(1) { animation-delay: 80ms; }
-#dashboard-sidebar .panel:nth-child(2) { animation-delay: 120ms; }
-#dashboard-sidebar .panel:nth-child(3) { animation-delay: 160ms; }
-#calendar-sidebar .panel:nth-child(1) { animation-delay: 100ms; }
-#calendar-sidebar .panel:nth-child(2) { animation-delay: 140ms; }
+#dashboard-sidebar .panel:nth-child(2) { animation-delay: 110ms; }
+#dashboard-sidebar .panel:nth-child(3) { animation-delay: 140ms; }
+#communities-layout > *:nth-child(1) { animation-delay: 50ms; }
+#communities-layout > *:nth-child(2) { animation-delay: 90ms; }
+#communities-layout > *:nth-child(3) { animation-delay: 130ms; }
+#calendar-layout > .panel { animation-delay: 60ms; }
+#calendar-sidebar > .panel:nth-child(1) { animation-delay: 90ms; }
+#calendar-sidebar > .panel:nth-child(2) { animation-delay: 120ms; }
+#events-filter-bar { animation-delay: 40ms; }
+#events-feed-section { animation-delay: 80ms; }
 
 @keyframes revealUp {
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
-
-/* List item stagger */
-#deadlines-list li,
-#announcements-list li,
-#upcoming-events-list li,
-#communities-list li,
-#todo-list li {
-  opacity: 0;
-  transform: translateY(6px);
-  animation: revealUp var(--duration-ui) var(--ease-out) forwards;
-}
-
-#deadlines-list li:nth-child(1) { animation-delay: 180ms; }
-#deadlines-list li:nth-child(2) { animation-delay: 220ms; }
-#announcements-list li:nth-child(1) { animation-delay: 200ms; }
-#announcements-list li:nth-child(2) { animation-delay: 240ms; }
-#upcoming-events-list li:nth-child(1) { animation-delay: 140ms; }
-#upcoming-events-list li:nth-child(2) { animation-delay: 180ms; }
-#communities-list li:nth-child(1) { animation-delay: 160ms; }
-#communities-list li:nth-child(2) { animation-delay: 200ms; }
-#communities-list li:nth-child(3) { animation-delay: 240ms; }
-#todo-list li:nth-child(1) { animation-delay: 180ms; }
-#todo-list li:nth-child(2) { animation-delay: 220ms; }
-.event-card:not(.reveal-on-scroll):nth-child(1) { animation-delay: 120ms; }
-.event-card:not(.reveal-on-scroll):nth-child(2) { animation-delay: 160ms; }
-.event-card:not(.reveal-on-scroll):nth-child(3) { animation-delay: 200ms; }
 
 /* Events page uses scroll reveal instead of load stagger */
 #events-feed .event-card.reveal-on-scroll {
@@ -80,18 +67,20 @@
   animation: none;
 }
 
-/* Chat messages — enter from slight scale, not zero */
+/* Chat — subtle entrance */
 .chat-message {
-  opacity: 0;
-  transform: translateY(6px) scale(0.97);
-  animation: messageIn var(--duration-ui) var(--ease-out) forwards;
+  animation: messageIn var(--duration-ui) var(--ease-out) both;
 }
 
-.chat-message:nth-child(1) { animation-delay: 200ms; }
-.chat-message:nth-child(2) { animation-delay: 260ms; }
-.chat-message:nth-child(3) { animation-delay: 320ms; }
+.chat-message:nth-child(1) { animation-delay: 120ms; }
+.chat-message:nth-child(2) { animation-delay: 160ms; }
+.chat-message:nth-child(3) { animation-delay: 200ms; }
 
 @keyframes messageIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -242,16 +231,10 @@ body.survival-mode #deadlines-panel {
     transition-duration: 0.01ms !important;
   }
 
-  .reveal-on-scroll {
-    opacity: 1;
-    transform: none;
-  }
-
-  #page-main > .panel,
+  #page-main,
+  .reveal-on-scroll,
   #dashboard-grid .panel,
-  .chat-message,
-  .event-card,
-  #deadlines-list li {
+  .chat-message {
     opacity: 1;
     transform: none;
     animation: none;
