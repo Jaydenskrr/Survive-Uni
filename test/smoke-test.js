@@ -36,6 +36,7 @@ global.CustomEvent = class CustomEvent {
 const root = path.join(__dirname, '..');
 eval(fs.readFileSync(path.join(root, 'js/storage.js'), 'utf8'));
 eval(fs.readFileSync(path.join(root, 'js/tasks.js'), 'utf8'));
+eval(fs.readFileSync(path.join(root, 'js/features.js'), 'utf8'));
 
 function assert(condition, message) {
   if (!condition) throw new Error('FAIL: ' + message);
@@ -106,5 +107,15 @@ assert(changed >= 4, 'tasks:changed fires on mutations');
 
 assert(SurviveUni.tasks.getEffortLabel('quick') === 'Quick Win', 'effort label quick');
 assert(SurviveUni.tasks.getEffortEmoji('boss') === '\uD83D\uDC09', 'effort emoji boss');
+
+localStorage.removeItem('survive-uni-streak');
+SurviveUni.features.initFeatures();
+assert(SurviveUni.features.getStreak() === 0, 'features: initial streak is 0');
+SurviveUni.features.recordCompletion();
+assert(SurviveUni.features.getStreak() === 1, 'features: first completion sets streak to 1');
+SurviveUni.features.recordCompletion();
+assert(SurviveUni.features.getStreak() === 1, 'features: same-day does not double streak');
+const flavor = SurviveUni.features.getRandomFlavorText();
+assert(typeof flavor === 'string' && flavor.length > 0, 'features: flavor text returns string');
 
 console.log('\nAll smoke tests passed!');

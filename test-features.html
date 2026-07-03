@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Features Smoke Test</title>
+</head>
+<body>
+  <h1>Person E — Features Smoke Test</h1>
+  <div id="streak-tracker">
+    <span id="streak-count">0</span>
+    <span id="streak-unit">days</span>
+  </div>
+  <p id="flavor-text"></p>
+  <button type="button" id="complete-btn">Simulate task done</button>
+  <pre id="output"></pre>
+
+  <script src="js/storage.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/features.js"></script>
+  <script>
+    (function () {
+      const log = [];
+      const out = document.getElementById('output');
+
+      function assert(condition, message) {
+        if (!condition) throw new Error('FAIL: ' + message);
+        log.push('PASS: ' + message);
+      }
+
+      function yesterday() {
+        const d = new Date();
+        d.setDate(d.getDate() - 1);
+        return d.toISOString().slice(0, 10);
+      }
+
+      try {
+        localStorage.removeItem('survive-uni-streak');
+        SurviveUni.storage.clearTasks();
+        initFeatures();
+
+        assert(SurviveUni.features.getStreak() === 0, 'initial streak is 0');
+
+        SurviveUni.features.recordCompletion();
+        assert(SurviveUni.features.getStreak() === 1, 'first completion sets streak to 1');
+        assert(document.getElementById('streak-count').textContent === '1', 'streak UI updates');
+
+        SurviveUni.features.recordCompletion();
+        assert(SurviveUni.features.getStreak() === 1, 'same-day completion does not double streak');
+
+        localStorage.setItem('survive-uni-streak', JSON.stringify({
+          streak: 5,
+          lastCompletionDate: yesterday(),
+        }));
+        SurviveUni.features.recordCompletion();
+        assert(SurviveUni.features.getStreak() === 6, 'consecutive day increments streak');
+
+        const msg = SurviveUni.features.getRandomFlavorText();
+        assert(typeof msg === 'string' && msg.length > 0, 'flavor text is non-empty string');
+
+        SurviveUni.features.showFlavorText('Test message!');
+        assert(document.getElementById('flavor-text').textContent === 'Test message!', 'flavor text renders');
+
+        document.getElementById('complete-btn').addEventListener('click', () => {
+          SurviveUni.features.onTaskCompleted();
+        });
+
+        log.push('\nAll features smoke tests passed!');
+        out.textContent = log.join('\n');
+      } catch (err) {
+        out.textContent = log.join('\n') + '\n\n' + err.message;
+      }
+    })();
+  </script>
+</body>
+</html>
