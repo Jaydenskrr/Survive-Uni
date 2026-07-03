@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task Engine Smoke Test</title>
+</head>
+<body>
+  <h1>Task Engine Smoke Test</h1>
+  <pre id="output"></pre>
+  <script src="js/storage.js"></script>
+  <script src="js/tasks.js"></script>
+  <script>
+    (function () {
+      const log = [];
+      const out = document.getElementById('output');
+
+      function assert(condition, message) {
+        if (!condition) throw new Error('FAIL: ' + message);
+        log.push('PASS: ' + message);
+      }
+
+      function tomorrow() {
+        const d = new Date();
+        d.setDate(d.getDate() + 1);
+        return d.toISOString().slice(0, 10);
+      }
+
+      function inDays(n) {
+        const d = new Date();
+        d.setDate(d.getDate() + n);
+        return d.toISOString().slice(0, 10);
+      }
+
+      try {
+        SurviveUni.storage.clearTasks();
+
+        let changed = 0;
+        document.addEventListener('tasks:changed', () => changed++);
+
+        const task = SurviveUni.tasks.add({
+          title: 'Essay',
+          dueDate: tomorrow(),
+          effort: 'boss',
+        });
+        assert(task.id, 'add returns task with id');
+        assert(task.effort === 'boss', 'effort is boss');
+        assert(SurviveUni.tasks.list().length === 1, 'list shows 1 task');
+        assert(changed === 1, 'tasks:changed fires on add');
+
+        const urgent = SurviveUni.tasks.getByUrgency().urgent;
+        assert(urgent.some((t) => t.id === task.id), 'tomorrow task is urgent');
+
+        const soonTask = SurviveUni.tasks.add({
+          title: 'Reading',
+          dueDate: inDays(5),
+          effort: 'quick',
+        });
+        const soon = SurviveUni.tasks.getByUrgency().soon;
+        assert(soon.some((t) => t.id === soonTask.id), '5-day task is soon');
+
+        const chillTask = SurviveUni.tasks.add({
+          title: 'Optional project',
+          dueDate: inDays(14),
+        });
+        const chill = SurviveUni.tasks.getByUrgency().chill;
+        assert(chill.some((t) => t.id === chillTask.id), '14-day task is chill');
+
+        SurviveUni.tasks.snoozeForDays(task.id, 3);
+        assert(SurviveUni.tasks.list().length === 2, 'snoozed task hidden from list');
+        assert(
+          SurviveUni.tasks.list({ includeSnoozed: true }).length === 3,
+          'includeSnoozed shows snoozed task'
+        );
+
+        SurviveUni.tasks.markDone(soonTask.id);
+        assert(SurviveUni.tasks.list().length === 1, 'done task hidden from list');
+
+        const reloaded = SurviveUni.storage.loadTasks();
+        assert(reloaded.length === 3, 'persistence: 3 tasks in storage');
+
+        assert(changed >= 4, 'tasks:changed fires on mutations');
+
+        log.push('\nAll smoke tests passed!');
+        out.textContent = log.join('\n');
+      } catch (err) {
+        out.textContent = log.join('\n') + '\n\n' + err.message;
+      }
+    })();
+  </script>
+</body>
+</html>
